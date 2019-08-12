@@ -16,6 +16,7 @@
     "better-scroll": "^2.0.0-alpha.20",
     "camelcase": "^5.2.0",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
+    "concurrently": "^4.1.1",
     "create-keyframe-animation": "^0.1.0",
     "css-loader": "2.1.1",
     "dotenv": "6.2.0",
@@ -78,7 +79,9 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start:server": "cd NeteaseCloudMusicApi &&PORT=3300 npm run start",
+    "start:react": "node scripts/start.js",
+    "start": "concurrently \"npm run start:server\" \"npm run start:react\" ",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
