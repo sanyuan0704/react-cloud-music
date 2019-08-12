@@ -5,13 +5,22 @@
 移动端和PC端的chrome浏览器食用更佳 : )
 
 打开方式:
-1. `git clone  https://github.com/sanyuan0704/cloud-music.git`
+1. 将项目 clone 下来
+```shell
+$ git clone https://github.com/sanyuan0704/cloud-music.git
+$ cd cloud-music
+$ npm install
 
-2. `npm install`
-
-3. 大家到[网易云音乐后端nodeJS接口](https://github.com/Binaryify/NeteaseCloudMusicApi)这里克隆下大佬的node项目，在本地跑起来，然后在本项目api文件夹下的config.js填写后端请求地址，将对应的地址填到baseUrl变量中。
-
-4. `npm start`在开发模式下启动本项目
+// 下载子模块
+$ git submodule update --init --recursive
+$ cd NeteaseCloudMusicApi
+$ npm install
+$ cd ../
+```
+2. 运行
+```shell
+$ npm run start
+```
 
 现在就在本地的3000端口访问了。如果要打包到线上，执行`npm run build`即可。
 
