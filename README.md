@@ -15,6 +15,7 @@ $ npm install
 $ git submodule update --init --recursive
 $ cd NeteaseCloudMusicApi
 $ npm install
+$ cd ../
 ```
 2. 运行
 ```shell
