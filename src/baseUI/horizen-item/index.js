@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, memo } from 'react';
 import styled from 'styled-components';
 import Scroll from '../scroll/index'
 import { PropTypes } from 'prop-types';
@@ -36,6 +36,7 @@ function Horizen(props) {
   const [refreshCategoryScroll, setRefreshCategoryScroll] = useState(false);
   const Category = useRef(null);
   const { list, oldVal, title } = props;
+  const { handleClick } = props;
 
   useEffect(() => {
     let categoryDOM = Category.current;
@@ -48,8 +49,8 @@ function Horizen(props) {
     setRefreshCategoryScroll(true);
   }, [refreshCategoryScroll]);
 
-  const clickHandle = (item, oldVal) => {
-    props.handleClick()(oldVal, item.key);
+  const clickHandle = (item) => {
+    handleClick(item.key);
   }
   return ( 
     <Scroll direction={"horizental"} refresh={true}>
@@ -62,7 +63,7 @@ function Horizen(props) {
                 <ListItem 
                   key={item.key}
                   className={`${oldVal === item.key ? 'selected': ''}`} 
-                  onClick={() => clickHandle(item, oldVal)}>
+                  onClick={() => clickHandle(item)}>
                     {item.name}
                 </ListItem>
               )
@@ -84,4 +85,4 @@ Horizen.propTypes = {
   handleClick: PropTypes.func
 };
  
-export default Horizen;
+export default memo(Horizen);

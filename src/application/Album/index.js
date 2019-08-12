@@ -25,7 +25,7 @@ function Album(props) {
   const id = props.match.params.id;
 
   const { currentAlbum, enterLoading, pullUpLoading, songsCount } = props;
-  const { getAlbumData, changePullUpLoadingState } = props;
+  const { getAlbumDataDispatch, changePullUpLoadingStateDispatch } = props;
 
 
   useEffect(() => {
@@ -37,8 +37,8 @@ function Album(props) {
     } else if(/rank/.test(pathName)) {
       urlStr = "/rank";
     }
-    getAlbumData(id, urlStr);
-  }, [getAlbumData, id, props.history.location.pathname]);
+    getAlbumDataDispatch(id, urlStr);
+  }, [getAlbumDataDispatch, id, props.history.location.pathname]);
 
 
   const handleScroll = (pos) => {
@@ -60,8 +60,8 @@ function Album(props) {
   };
 
   const handlePullUp = () => {
-    changePullUpLoadingState(true);
-    changePullUpLoadingState(false);
+    changePullUpLoadingStateDispatch(true);
+    changePullUpLoadingStateDispatch(false);
   };
   
   const handleBack = () => {
@@ -113,11 +113,11 @@ const mapStateToProps = (state) => ({
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAlbumData(id, fromURL) {
+    getAlbumDataDispatch(id, fromURL) {
       dispatch(changeEnterLoading(true));
       dispatch(getAlbumList(id, fromURL));
     },
-    changePullUpLoadingState(state) {
+    changePullUpLoadingStateDispatch(state) {
       dispatch(changePullUpLoading(state));
     },
     changeScrollYDispatch(y) {

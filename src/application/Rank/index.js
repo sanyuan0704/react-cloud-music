@@ -16,11 +16,13 @@ import { renderRoutes } from 'react-router-config';
 function Rank(props) {
   const { rankList:list, loading, songsCount } = props;
 
+  const { getRankListDataDispatch } = props;
+
   let rankList = list ? list.toJS() : [];
 
   useEffect(() => {
     if(!rankList.length){
-      props.getRankListData();
+      getRankListDataDispatch();
     }
     // eslint-disable-next-line
   }, []);
@@ -93,11 +95,11 @@ const mapStateToProps = (state) => ({
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
   return {
-    getRankListData() {
+    getRankListDataDispatch() {
       dispatch(getRankList());
     }
   }
 };
 
  
-export default connect(mapStateToProps, mapDispatchToProps)(Rank);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Rank));

@@ -104,4 +104,4 @@ const Confirm = forwardRef((props, ref) => {
   )
 })
 
-export default Confirm;
+export default React.memo(Confirm);

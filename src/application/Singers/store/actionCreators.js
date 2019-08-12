@@ -69,7 +69,7 @@ export const getHotSingerList = () => {
 export const refreshMoreHotSingerList = () => {
   return (dispatch, getState) => {
     const pageCount = getState().getIn(['singers', 'pageCount']);
-    const singerList = getState().getIn(['singers', 'singerList']);
+    const singerList = getState().getIn(['singers', 'singerList']).toJS();
     getHotSingerListRequest(pageCount).then(res => {
       const data = [...singerList, ...res.artists];
       dispatch(changeSingerList(data));
@@ -103,11 +103,9 @@ export const refreshMoreSingerList = () => {
     const alpha = getState().getIn(['singers', 'alpha']);
     const pageCount = getState().getIn(['singers', 'pageCount']);
     const singerList = getState().getIn(['singers', 'singerList']).toJS();
-    console.log("pageCOunt", pageCount)
     getSingerListRequest(category, alpha, pageCount).then(res => {
       const data = [...singerList, ...res.artists];
       dispatch(changeSingerList(data));
-      dispatch(changePageCount(pageCount+1))
       dispatch(changePullUpLoading(false));
     }).catch(() => {
       console.log('歌手数据获取失败');

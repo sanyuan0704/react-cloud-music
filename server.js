@@ -9,7 +9,7 @@ var app = express()
 
 app.use(compression())
 
-app.use(express.static('./dist'))
+app.use(express.static('./build'))
 
 module.exports = app.listen(port, function (err) {
   if (err) {

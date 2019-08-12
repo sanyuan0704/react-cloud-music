@@ -55,4 +55,4 @@ const Toast = forwardRef((props, ref) => {
   )
 });
 
-export default Toast;
+export default React.memo(Toast);

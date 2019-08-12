@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Container } from './../Album/style';
 import Header from '../../baseUI/header/index'
 import { ImgWrapper, CollectButton, SongListWrapper, BgLayer } from "./style";
@@ -13,7 +13,8 @@ import { CSSTransition } from 'react-transition-group';
 import SongsList from '../SongList/';
 import MusicNote from '../../baseUI/music-note/index';
 
-class Singer extends Component {
+// 歌手列表组件bug修复后一起重构成函数组件
+class Singer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -136,7 +137,7 @@ const mapStateToProps = (state) => ({
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSingerData(id) {
+    getSingerDataDispatch(id) {
       dispatch(changeEnterLoading(true));
       dispatch(getSingerInfo(id));
     }

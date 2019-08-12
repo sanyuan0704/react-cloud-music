@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const baseUrl = 'http://47.105.150.105:4001';
+export const baseUrl = 'xxxxxxxxx自己填写';
 
 // axios的实例及拦截器配置
 const axiosInstance = axios.create({

@@ -39,4 +39,4 @@ function RecommendList(props) {
   );
   }
  
-export default withRouter(RecommendList);
+export default withRouter(React.memo(RecommendList));

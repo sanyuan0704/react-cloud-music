@@ -34,11 +34,11 @@ export const getHotKeyWords = () => {
 export const getSuggestList = (query) => {
   return dispatch => {
     getSuggestListRequest(query).then(data => {
-      let res = data.result;
+      let res = data.result || [];
       dispatch(changeSuggestList(res));
     })
     getResultSongsListRequest(query).then(data => {
-      let res = data.result.songs;
+      let res = data.result.songs || [];
       dispatch(changeResultSongs(res));
       dispatch(changeEnterLoading(false));
     })

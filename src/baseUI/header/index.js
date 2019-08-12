@@ -52,4 +52,4 @@ Header.propTypes = {
   isMarquee: PropTypes.bool
 };
 
-export default Header;
+export default React.memo(Header);

@@ -5,6 +5,4 @@ import fastclick from 'fastclick';
 
 fastclick.attach(document.body);
 
-ReactDOM.render(  
-      <App />,
-document.getElementById('root'));
+ReactDOM.render(<App />,document.getElementById('root'));

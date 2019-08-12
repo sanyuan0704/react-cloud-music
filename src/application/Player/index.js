@@ -14,7 +14,7 @@ import { CSSTransition } from "react-transition-group";
 import ProgressCircle from './../../baseUI/progress-circle/index';
 import {
   changePlayingState,
-  changeFullScreen,
+  // changeFullScreen,
   changeShowPlayList,
   changeCurrentIndex,
   changeCurrentSong,
@@ -393,9 +393,9 @@ const mapDispatchToProps = (dispatch) => {
     togglePlayingDispatch(data) {
       dispatch(changePlayingState(data));
     },
-    toggleFullScreen(data) {
-      dispatch(changeFullScreen(data))
-    },
+    // toggleFullScreenDispatch(data) {
+    //   dispatch(changeFullScreen(data))
+    // },
     togglePlayListDispatch(data) {
       dispatch(changeShowPlayList(data));
     },

@@ -53,4 +53,4 @@ function LoadingV2() {
   );
 }
  
-export default LoadingV2;
+export default React.memo(LoadingV2);

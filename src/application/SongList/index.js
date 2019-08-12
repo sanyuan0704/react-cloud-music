@@ -75,7 +75,6 @@ const SongsList = React.forwardRef((props, refs)=> {
       <SongItem>
         { songList(songs) }
       </SongItem>
-      {/* <MusicNote ref={musicNoteRef}></MusicNote> */}
     </SongList>
   )
 });

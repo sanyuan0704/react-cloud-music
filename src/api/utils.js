@@ -1,13 +1,13 @@
 import { RankTypes } from "./config";
 //节流函数
-export function debounce(func, delay, _this) {
-  let timer;
+let timer;
+export function debounce(func, delay) {
   return function (...args) {
     if(timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      func.apply(_this, args)
+      func.apply(this, args)
     }, delay);
   }
 }

@@ -13,14 +13,14 @@ import Loading from '../../baseUI/loading-v2/index';
 function Recommend(props){
   const { bannerList, recommendList, songsCount, enterLoading } = props;
 
-  const { getBannerData, getRecommendListData } = props;
+  const { getBannerDataDispatch, getRecommendListDataDispatch } = props;
 
   useEffect(() => {
     if(!bannerList.length){
-      getBannerData();
+      getBannerDataDispatch();
     }
     if(!recommendList.length){
-      getRecommendListData();
+      getRecommendListDataDispatch();
     }
     // eslint-disable-next-line
   }, []);
@@ -49,10 +49,10 @@ const mapStateToProps = (state) => ({
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
   return {
-    getBannerData() {
+    getBannerDataDispatch() {
       dispatch(actionTypes.getBannerList());
     },
-    getRecommendListData() {
+    getRecommendListDataDispatch() {
       dispatch(actionTypes.getRecommendList());
     },
 
@@ -60,4 +60,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 // 将ui组件包装成容器组件
-export default connect(mapStateToProps, mapDispatchToProps)(Recommend);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Recommend));

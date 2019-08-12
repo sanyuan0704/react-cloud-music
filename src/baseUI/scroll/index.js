@@ -4,6 +4,7 @@ import BScroll from "better-scroll"
 import styled from 'styled-components';
 import Loading from '../loading/index';
 import Loading2 from '../loading-v2/index';
+import { debounce } from "../../api/utils";
 
 const ScrollContainer = styled.div`
   width: 100%;
@@ -32,7 +33,6 @@ export const PullDownLoading = styled.div`
 
 const Scroll = forwardRef((props, ref) => {
   const [bScroll, setBScroll] = useState();
-  const [timer, setTimer] = useState();
 
   const scrollContaninerRef = useRef();
 
@@ -53,17 +53,11 @@ const Scroll = forwardRef((props, ref) => {
       }
     });
     setBScroll(scroll);
-    let timer;
     if(pullUp) {
       scroll.on('scrollEnd', () => {
         //判断是否滑动到了底部
         if(scroll.y <= scroll.maxScrollY + 100){
-          if(timer){
-            clearTimeout(timer)
-          } 
-          timer = setTimeout(() => {
-            pullUp();
-          },500) 
+          pullUp();
         }
       });
     }
@@ -71,12 +65,7 @@ const Scroll = forwardRef((props, ref) => {
       scroll.on('touchEnd', (pos) => {
         //判断用户的下拉动作
         if(pos.y > 50) {
-          if(timer){
-            clearTimeout(timer)
-          } 
-          timer = setTimeout(() => {
-            pullDown();
-          },500) 
+          debounce(pullDown, 0)();
         }
       });
     }
@@ -94,6 +83,7 @@ const Scroll = forwardRef((props, ref) => {
       scroll.off('scroll');
       setBScroll(null);
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

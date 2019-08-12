@@ -75,4 +75,4 @@ function AlbumDetail(props) {
     </div>
   )
 }
-export default AlbumDetail;
+export default React.memo(AlbumDetail);

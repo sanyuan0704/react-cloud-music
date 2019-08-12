@@ -1,6 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import styled from 'styled-components';
 import style from '../../assets/global-style';
+import { debounce } from './../../api/utils';
 
 const SearchBoxWrapper = styled.div`
   display: flex;
@@ -38,7 +39,6 @@ const SearchBoxWrapper = styled.div`
 const SearchBox = (props) => {
   const queryRef = useRef();
   const [query, setQuery] = useState('');
-  const [timer, setTimer] = useState();
 
   const { newQuery } = props;
   const { handleQuery } = props;
@@ -48,13 +48,7 @@ const SearchBox = (props) => {
   }, [])
 
   useEffect(() => {
-    if(timer){
-      console.log(111)
-      clearTimeout(timer);
-    } 
-    setTimer(setTimeout(() => {
-      handleQuery(query);
-    }, 1000));
+    debounce(handleQuery, 1000)(query);
     // eslint-disable-next-line
   }, [query]);
 
@@ -87,4 +81,4 @@ const SearchBox = (props) => {
   )
 }
 
-export default SearchBox;
+export default React.memo(SearchBox);

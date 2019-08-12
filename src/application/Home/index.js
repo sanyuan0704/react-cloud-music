@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { renderRoutes } from "react-router-config";
 import {
   Top,
@@ -8,14 +8,12 @@ import {
 import { NavLink } from 'react-router-dom';
 import Player from '../Player/index';
 
-class Home extends Component {
-  render() { 
-    const { route } = this.props;
-
+function Home(props){
+    const { route } = props;
     return (
       <div>
         <Top>
-          <span className="iconfont menu" >&#xe65c;</span>
+          <span className="iconfont menu" onClick={() => alert('用户中心正在开发中，敬请期待:)')}>&#xe65c;</span>
           <span className="title">云音悦</span>
           <span className="iconfont search" onClick={() => this.props.history.push('/search')}>&#xe62b;</span>
         </Top>
@@ -28,7 +26,6 @@ class Home extends Component {
         <Player></Player>
       </div>
     );
-  }
 }
  
 export default Home;
