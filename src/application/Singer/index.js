@@ -31,7 +31,7 @@ class Singer extends PureComponent {
 
   componentDidMount() {
     const id = this.props.match.params.id; 
-    this.props.getSingerData(id);
+    this.props.getSingerDataDispatch(id);
     this.height = this.imageWrapper.current.offsetHeight;
     this.songScroll.current.style.top = `${this.height-5}px`;
     this.layer.current.style.top = `${this.height-5}px`;
