@@ -79,9 +79,9 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
-    "start:server": "cd NeteaseCloudMusicApi &&PORT=3300 npm run start",
+    "start:server": "cd NeteaseCloudMusicApi && set PORT=3300 && node app.js",
     "start:react": "node scripts/start.js",
-    "start": "concurrently \"npm run start:server\" \"npm run start:react\" ",
+    "start": "concurrently \"npm run start:server\" \"npm run start:react\"",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
