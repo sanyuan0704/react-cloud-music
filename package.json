@@ -79,7 +79,7 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
-    "start:server": "cd NeteaseCloudMusicApi && set PORT=3300 && node app.js",
+    "start:server": "cd NeteaseCloudMusicApi && cross-env PORT=3300 node app.js",
     "start:react": "node scripts/start.js",
     "start": "concurrently \"npm run start:server\" \"npm run start:react\"",
     "build": "node scripts/build.js",
@@ -101,6 +101,7 @@
     ]
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "url-loader": "^2.1.0"
   },
   "jest": {
