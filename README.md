@@ -14,13 +14,9 @@ $ npm install
 // 下载子模块
 $ git submodule update --init --recursive
 $ cd NeteaseCloudMusicApi
-$ npm install
+$ npm install 
 $ cd ../  (注意: 一定要返回到上一层)
 ```
-
-温馨提示:如果是Mac/Linux用户,请将package.json中scripts中"start:server"的值改为：
-
- `cd NeteaseCloudMusicApi && PORT=3300 node app.js`
 
 2. 运行
 ```shell
