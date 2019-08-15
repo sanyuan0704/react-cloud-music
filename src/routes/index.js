@@ -78,7 +78,6 @@ export default [
       },
       {
         path: "/recommend/",
-        extra: true,
         key: 'home',
         component: Recommend,
         routes:[{
@@ -98,7 +97,6 @@ export default [
       {
         path: "/rank",
         component: Rank,
-        extra: true,
         key: 'rank',
         routes:[{
           path: '/rank/:id',
