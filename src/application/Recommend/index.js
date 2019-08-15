@@ -27,7 +27,7 @@ function Recommend(props){
 
   return (
     <Content play={songsCount}>
-      <Scroll className="list" onScroll={() => forceCheck()}>
+      <Scroll onScroll={() => forceCheck()}>
         <div>
             <Slider bannerList={bannerList}></Slider>
             <RecommendList recommendList={recommendList}></RecommendList>
@@ -35,7 +35,7 @@ function Recommend(props){
       </Scroll>
       {enterLoading? <EnterLoading><Loading></Loading></EnterLoading> : null}
       { renderRoutes(props.route.routes) }
-    </Content> 
+    </Content>
   );
 }
 

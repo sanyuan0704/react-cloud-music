@@ -11,7 +11,7 @@ function Slider(props) {
     if(bannerList.length && !sliderSwiper){
         let sliderSwiper = new Swiper(".slider-container", {
           loop: true,
-          autoplay: 3000,
+          autoplay: true,
           autoplayDisableOnInteraction: false,
           pagination: {el:'.swiper-pagination'},
         });
@@ -36,7 +36,7 @@ function Slider(props) {
           }
         </div>
         <div className="swiper-pagination"></div>
-      </div> 
+      </div>
     </SliderContainer>
   );
 }

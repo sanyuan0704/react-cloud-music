@@ -1,5 +1,5 @@
 import React from 'react';
-import { 
+import {
   ListWrapper,
   ListItem,
   List
@@ -13,7 +13,6 @@ function RecommendList(props) {
   }
   return (
     <ListWrapper>
-      <h1 className="title">推荐歌单</h1>
       <List>
         {
           props.recommendList.map(item => {
@@ -38,5 +37,5 @@ function RecommendList(props) {
     </ListWrapper>
   );
   }
- 
+
 export default withRouter(React.memo(RecommendList));
