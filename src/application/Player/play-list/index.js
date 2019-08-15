@@ -14,7 +14,6 @@ import { changeCurrentSong, changeCurrentIndex, changePlayList, changePlayingSta
 import { playMode } from './../../../api/config';
 import { prefixStyle } from './../../../api/utils';
 import Confirm from './../../../baseUI/confirm/index';
-import Toast from './../../../baseUI/toast/index';
 
 
 function PlayList(props) {
@@ -29,7 +28,8 @@ function PlayList(props) {
 
   const listContentRef = useRef();
   const listWrapperRef = useRef();
-  const toastRef = useRef();
+  const playListRef = useRef();
+  const confirmRef = useRef();
 
   const {
     currentIndex,
@@ -48,9 +48,6 @@ function PlayList(props) {
     clearDispatch
   } = props;
 
-  const playListRef = useRef();
-  const confirmRef = useRef();
-
   const changeMode = (e) => {
     let newMode = (mode + 1)%3;
     if(newMode === 0){
@@ -68,40 +65,6 @@ function PlayList(props) {
     changeModeDispatch(newMode);
   }
 
-  const getPlayMode = () => {
-    let content, text;
-    if(mode === playMode.sequence) {
-      content = "&#xe625;";
-      text = "顺序播放";
-    } else if(mode === playMode.loop) {
-      content = "&#xe653;";
-      text = "单曲循环";
-    } else {
-      content = "&#xe61b;";
-      text = "随机播放";
-    }
-    return (
-      <div onClick={(e) => changeMode(e)}>
-        <i className="iconfont"  dangerouslySetInnerHTML={{__html: content}}></i>
-        <span className="text">{text}</span>
-      </div>
-    )
-  }
-
-  const getCurrentIcon = (item) => {
-    const current = currentSong.id === item.id;
-    const className = current ? 'icon-play' : '';
-    const content = current ? '&#xe6e3;': '';
-    return (
-      <i className={`current iconfont ${className}`} dangerouslySetInnerHTML={{__html:content}}></i>
-    )
-  }
-
-  const getFavoriteIcon = (item) => {
-    return (
-      <i className="iconfont">&#xe601;</i>
-    )
-  }
   const handleChangeCurrentIndex = (index) => {
     if(currentIndex === index) return;
     changeCurrentIndexDispatch(index);
@@ -148,8 +111,43 @@ function PlayList(props) {
 
   const handleConfirmClear = () => {
     clearDispatch();
-    toastRef.current.show();
   }
+
+  const getFavoriteIcon = (item) => {
+    return (
+      <i className="iconfont">&#xe601;</i>
+    )
+  }
+
+  const getCurrentIcon = (item) => {
+    const current = currentSong.id === item.id;
+    const className = current ? 'icon-play' : '';
+    const content = current ? '&#xe6e3;': '';
+    return (
+      <i className={`current iconfont ${className}`} dangerouslySetInnerHTML={{__html:content}}></i>
+    )
+  }
+
+  const getPlayMode = () => {
+    let content, text;
+    if(mode === playMode.sequence) {
+      content = "&#xe625;";
+      text = "顺序播放";
+    } else if(mode === playMode.loop) {
+      content = "&#xe653;";
+      text = "单曲循环";
+    } else {
+      content = "&#xe61b;";
+      text = "随机播放";
+    }
+    return (
+      <div >
+        <i className="iconfont" onClick={(e) => changeMode(e)}  dangerouslySetInnerHTML={{__html: content}}></i>
+        <span className="text" onClick={(e) => changeMode(e)}>{text}</span>
+      </div>
+    )
+  }
+
   return (
     <CSSTransition 
       in={showPlayList} 
@@ -222,7 +220,6 @@ function PlayList(props) {
           </ScrollWrapper>
         </div>
         <Confirm ref={confirmRef} text={"是否删除全部?"} cancelBtnText={"取消"} confirmBtnText={"确定"} handleConfirm={handleConfirmClear}></Confirm>
-        <Toast ref={toastRef} text={"清空成功"}></Toast>
       </PlayListWrapper>
     </CSSTransition>
   )

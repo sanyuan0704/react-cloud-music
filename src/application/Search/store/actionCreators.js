@@ -34,10 +34,12 @@ export const getHotKeyWords = () => {
 export const getSuggestList = (query) => {
   return dispatch => {
     getSuggestListRequest(query).then(data => {
+      if(!data)return;
       let res = data.result || [];
       dispatch(changeSuggestList(res));
     })
     getResultSongsListRequest(query).then(data => {
+      if(!data)return;
       let res = data.result.songs || [];
       dispatch(changeResultSongs(res));
       dispatch(changeEnterLoading(false));

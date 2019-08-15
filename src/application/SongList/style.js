@@ -64,6 +64,7 @@ export const SongItem = styled.ul`
     height: 60px;
     align-items: center;  
     .index{
+      flex-basis: 60px;
       width: 60px;
       height: 60px;
       line-height: 60px;
@@ -78,6 +79,10 @@ export const SongItem = styled.ul`
       flex-direction: column;
       justify-content: space-around;
       border-bottom: 1px solid ${style["border-color"]};
+      ${style.noWrap()}
+      >span{
+        ${style.noWrap()}
+      }
       >span:first-child{
         color: ${style["font-color-desc"]};
       }

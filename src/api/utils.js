@@ -1,8 +1,9 @@
 import { RankTypes } from "./config";
 //节流函数
 let timer;
-export function debounce(func, delay) {
-  return function (...args) {
+
+const debounce = (func, delay) => {
+  return (...args) => {
     if(timer) {
       clearTimeout(timer);
     }
@@ -11,6 +12,8 @@ export function debounce(func, delay) {
     }, delay);
   }
 }
+
+export {debounce};
 
 //处理歌手列表拼接歌手名字
 export const getName = (list) => {
