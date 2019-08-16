@@ -48,7 +48,7 @@ const SearchBox = (props) => {
   }, [])
 
   useEffect(() => {
-    debounce(handleQuery, 1000)(query);
+    debounce(handleQuery, 500)(query);
     // eslint-disable-next-line
   }, [query]);
 

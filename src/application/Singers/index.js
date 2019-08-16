@@ -27,6 +27,7 @@ class Singers extends PureComponent{
       this.props.getHotSinger();
     }
   }
+
   enterDetail (id) {
     this.props.history.push(`/singers/${id}`);
   }
@@ -47,6 +48,7 @@ class Singers extends PureComponent{
   }
   renderSingerList()  {
     const {singerList} = this.props;
+
     return (
       <List>
         {
@@ -68,6 +70,8 @@ class Singers extends PureComponent{
   }
   render() {
     const { alpha, category, enterLoading, songsCount, pullUpLoading,pullDownLoading  } = this.props;
+
+
     return (
       <div>
         {/* 对于better-scroll来讲，其作用的元素外面必须要有一个尺寸确定的容器包裹，因此设置xxxContainer */}
