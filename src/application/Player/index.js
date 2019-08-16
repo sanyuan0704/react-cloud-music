@@ -269,7 +269,7 @@ function Player(props) {
       >
         <NormalPlayer ref={normalPlayerRef}>
           <div className="background">
-            <img src={song.al.picUrl} width="100%" height="100%" alt="歌曲图片"/>
+            <img src={song.al.picUrl + "?param=300x300"} width="100%" height="100%" alt="歌曲图片"/>
           </div>
           <Top className="top">
             <div className="back" onClick={() => setFull(false)}>
@@ -282,7 +282,7 @@ function Player(props) {
             <div>
               <CDWrapper ref={cdWrapperRef}>
                 <div className="cd" >
-                  <img ref={cdImageRef} className={`image play ${playing ? "": "pause"}`} src={song.al.picUrl} alt=""/>
+                  <img ref={cdImageRef} className={`image play ${playing ? "": "pause"}`} src={song.al.picUrl + "?param=400x400"} alt=""/>
                 </div>
               </CDWrapper>
             </div>

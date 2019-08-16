@@ -57,7 +57,7 @@ class Singers extends PureComponent{
               <ListItem key={item.accountId+""+index} onClick={() => this.enterDetail(item.id)}>
                 <div className="img_wrapper">
                   <LazyLoad placeholder={<img width="100%" height="100%" src={require('./singer.png')} alt="music"/>}>
-                    <img src={item.picUrl} width="100%" height="100%" alt="music"/>
+                    <img src={`${item.picUrl}`+"?param=300x300"} width="100%" height="100%" alt="music"/>
                   </LazyLoad>
                 </div>
                 <span className="name">{item.name}</span>
