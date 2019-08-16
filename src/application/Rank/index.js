@@ -70,13 +70,14 @@ function Rank(props) {
   let globalStartIndex = filterIndex(rankList);
   let officialList = rankList.slice(0, globalStartIndex);
   let globalList = rankList.slice(globalStartIndex);
+  let displayStyle = loading ? {"display":"none"}:  {"display": ""};
   return (
     <Container play={songsCount}>
       <Scroll>
         <div>
-          <h1 className="offical">官方榜</h1>
+          <h1 className="offical" style={displayStyle}>官方榜</h1>
             { renderRankList(officialList) }
-          <h1 className="global">全球榜</h1>
+          <h1 className="global" style={displayStyle}>全球榜</h1>
             { renderRankList(globalList, true) }
           { loading ? <EnterLoading><Loading></Loading></EnterLoading> : null }
         </div>

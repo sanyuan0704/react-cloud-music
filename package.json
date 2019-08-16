@@ -1,6 +1,7 @@
 {
   "name": "wangyi-music",
   "version": "0.1.0",
+  "homepage":"https://sanyuan0704.github.io/cloud-music",
   "private": true,
   "dependencies": {
     "@babel/core": "7.4.3",
@@ -83,7 +84,9 @@
     "start:react": "node scripts/start.js",
     "start": "concurrently \"npm run start:server\" \"npm run start:react\"",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
