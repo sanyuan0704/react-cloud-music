@@ -8,7 +8,6 @@ export const Container = styled.div`
   top: 90px;
   bottom: ${props => props.play > 0?"60px": 0};
   width: 100%;
-  overflow: hidden;
   .offical,.global {
     margin: 10px 5px;
     padding-top: 15px;

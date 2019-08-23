@@ -15,11 +15,11 @@ import  LazyLoad, {forceCheck} from 'react-lazyload';
 import Loading from '../../baseUI/loading/index';
 import { renderRoutes } from 'react-router-config';
 
-// 这里采用class，之前写过hooks版，但是pageCount的更新存在bug, 后期bug修复之后换成函数式
+// 这里采用class，之前写过hooks版，但是pageCount的更新存在bug,
+// 有兴趣的小伙伴可以试试改为hooks版本， bug修复后换成函数式，欢迎大家提pr修正
 class Singers extends PureComponent{
   constructor(props) {
     super(props);
-
     Singers.scrollChild = React.createRef(null);
   }
   componentDidMount() {
@@ -57,7 +57,7 @@ class Singers extends PureComponent{
               <ListItem key={item.accountId+""+index} onClick={() => this.enterDetail(item.id)}>
                 <div className="img_wrapper">
                   <LazyLoad placeholder={<img width="100%" height="100%" src={require('./singer.png')} alt="music"/>}>
-                    <img src={`${item.picUrl}`+"?param=300x300"} width="100%" height="100%" alt="music"/>
+                    <img src={`${item.picUrl}?param=300x300`} width="100%" height="100%" alt="music"/>
                   </LazyLoad>
                 </div>
                 <span className="name">{item.name}</span>
@@ -70,7 +70,6 @@ class Singers extends PureComponent{
   }
   render() {
     const { alpha, category, enterLoading, songsCount, pullUpLoading,pullDownLoading  } = this.props;
-
 
     return (
       <div>
@@ -129,7 +128,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     // 滑到最底部刷新部分的处理
     pullUpRefresh(hot, count) {
-      console.log("hot", hot)
       dispatch(changePullUpLoading(true));
       dispatch(changePageCount(count+1));
       if(hot){

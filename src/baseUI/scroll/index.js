@@ -118,7 +118,7 @@ Scroll.defaultProps = {
   direction: "vertical",
   click: true,
   refresh: true,
-  onScroll: null,
+  onScroll: () => {},
   pullUpLoading: false,
   pullDownLoading: false,
   pullUp: () => {},
