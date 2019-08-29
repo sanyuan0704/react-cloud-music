@@ -21,7 +21,7 @@ const handleInsertSong = (state, song) => {
   //看看有没有同款
   let fpIndex = findIndex(song, playList);
   // 如果是当前歌曲直接不处理
-  if(fpIndex === currentIndex && currentIndex !== -1) return;
+  if(fpIndex === currentIndex && currentIndex !== -1) return state;
   currentIndex++;
   // 把歌放进去,放到当前播放曲目的下一个位置
   playList.splice(currentIndex, 0, song);

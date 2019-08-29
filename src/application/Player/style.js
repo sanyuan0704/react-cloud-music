@@ -27,6 +27,11 @@ export const NormalPlayer = styled.div`
     z-index: -1;
     opacity: 0.6;
     filter: blur(20px);
+    &.layer{
+      background: ${style["font-color-desc"]};
+      opacity: 0.3;
+      filter: none;
+    }
   }
   &.normal-enter, &.normal-exit-done{
     .top{
@@ -89,23 +94,28 @@ export const Middle = styled.div`
   bottom: 170px;
   white-space: nowrap;
   font-size: 0;
-  >div{
-    display: inline-block;
-    vertical-align: top;
-    position: relative;
-    margin: auto;
-    width: 100%;
-    height: 0;
-    padding-top: 80%;
+  overflow: hidden;
+  .fade-enter{
+    opacity: 0;
+  }
+  .fade-enter-active{
+    opacity: 1;
+    transition: all 0.4s;
+  }
+  .fade-exit-active{
+    opacity: 0;
+  }
+  .fade-exit-done{
+    opacity: 0;
   }
 `
 export const CDWrapper = styled.div`
   position: absolute;
   margin: auto;
-  top: 10%; left: 0; right: 0;
+  top: 10%; left: 0; right: 0; 
   width: 80%;
   box-sizing: border-box;
-  height: 100%;
+  height: 80vw;
   .cd {
     width: 100%;
     height: 100%;
@@ -126,9 +136,43 @@ export const CDWrapper = styled.div`
         animation-play-state: paused;
       }
     }
-
+  }
+  .playing_lyric{
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    color: rgba(255, 255,255, 0.5);
   }
 `
+
+export const LyricContainer = styled.div`
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  /* 遮罩 会有模糊效果，看个人喜欢*/
+  /* mask-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,hsla(0,0%,100%,0)),color-stop(10%,hsla(0,0%,100%,.6)),color-stop(25%,#fff),color-stop(75%,#fff),color-stop(85%,hsla(0,0%,100%,.6)),to(hsla(0,0%,100%,0)));
+  mask-image: linear-gradient(linear,left top,left bottom,color-stop(0,hsla(0,0%,100%,0)),color-stop(10%,hsla(0,0%,100%,.6)),color-stop(25%,#fff),color-stop(75%,#fff),color-stop(85%,hsla(0,0%,100%,.6)),to(hsla(0,0%,100%,0))); */
+`
+
+export const LyricWrapper = styled.div`
+  position: absolute;
+  left: 0; right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  transition: all 0.3s;
+  p{
+    line-height: 32px;
+    ${style.noWrap()}
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    &.current{
+      color: #fff;
+    }
+  }
+  
+`
+
 
 export const Bottom = styled.div`
   position: absolute;

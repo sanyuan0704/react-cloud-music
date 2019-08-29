@@ -1,7 +1,7 @@
 {
   "name": "wangyi-music",
   "version": "0.1.0",
-  "homepage":"https://sanyuan0704.github.io/cloud-music",
+  "homepage": "https://sanyuan0704.github.io/cloud-music",
   "private": true,
   "dependencies": {
     "@babel/core": "7.4.3",
@@ -105,6 +105,7 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
+    "react-hot-loader": "^4.12.12",
     "url-loader": "^2.1.0"
   },
   "jest": {

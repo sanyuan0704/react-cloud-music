@@ -1,3 +1,12 @@
+/**version:1.0.0
+ * 传入歌词，按照正则表达式解析
+ * 解析的数据结构为：
+ * {
+ *   txt:歌词，
+ *   time:ms
+ * }
+ */
+
 const timeExp = /\[(\d{2,}):(\d{2})(?:\.(\d{2,3}))?]/g
 
 const STATE_PAUSE = 0
@@ -24,18 +33,20 @@ export default class Lyric {
     this.curLine = 0
 
     this._init()
+    console.log(lrc)
   }
 
   _init() {
     this._initTag()
 
     this._initLines()
+    console.log(this.lines)
   }
 
   _initTag() {
     for (let tag in tagRegMap) {
       const matches = this.lrc.match(new RegExp(`\\[${tagRegMap[tag]}:([^\\]]*)]`, 'i'))
-      this.tags[tag] = matches && matches[1] || ''
+      this.tags[tag] = matches && (matches[1] || '')
     }
   }
 
@@ -45,8 +56,11 @@ export default class Lyric {
       const line = lines[i]
       let result = timeExp.exec(line)
       if (result) {
-        const txt = line.replace(timeExp, '').trim()
+        const txt = line.replace(timeExp, '').trim();
         if (txt) {
+          if (result[3].length === 3) {
+            result[3] = result[3]/10;
+          }
           this.lines.push({
             time: result[1] * 60 * 1000 + result[2] * 1000 + (result[3] || 0) * 10,
             txt
@@ -91,7 +105,7 @@ export default class Lyric {
     }, delay)
   }
 
-  play(startTime = 0, skipLast) {
+  play(startTime = 0) {
     if (!this.lines.length) {
       return
     }
@@ -99,10 +113,6 @@ export default class Lyric {
 
     this.curNum = this._findCurNum(startTime)
     this.startStamp = +new Date() - startTime
-
-    if (!skipLast) {
-      this._callHandler(this.curNum - 1)
-    }
 
     if (this.curNum < this.lines.length) {
       clearTimeout(this.timer)

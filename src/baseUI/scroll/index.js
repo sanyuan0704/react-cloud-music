@@ -154,6 +154,11 @@ const Scroll = forwardRef((props, ref) => {
         bScroll.refresh();
         bScroll.scrollTo(0, 0);
       }
+    },
+    getBScroll() {
+      if(bScroll) {
+        return bScroll;
+      }
     }
   }));
 
@@ -174,11 +179,11 @@ Scroll.defaultProps = {
   direction: "vertical",
   click: true,
   refresh: true,
-  onScroll: () => {},
+  onScroll:null,
   pullUpLoading: false,
   pullDownLoading: false,
-  pullUp: () => {},
-  pullDown: () => {},
+  pullUp: null,
+  pullDown: null,
   bounceTop: true,
   bounceBottom: true
 };

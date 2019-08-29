@@ -8,7 +8,9 @@ import {
   Bottom,
   ProgressWrapper,
   Operators,
-  CDWrapper
+  CDWrapper,
+  LyricContainer,
+  LyricWrapper,
 } from './style';
 import { CSSTransition } from "react-transition-group";
 import ProgressCircle from './../../baseUI/progress-circle/index';
@@ -28,16 +30,20 @@ import ProgressBar from '../../baseUI/progress-bar/index';
 import PlayList from './play-list/index';
 import { playMode } from './../../api/config';
 import Toast from './../../baseUI/toast/index';
+import Scroll from './../../baseUI/scroll/index';
+import { getLyricRequest } from './../../api/request';
+import Lyric from '../../api/lyric-parser';
 
 
 function Player(props) {
   const [full, setFull] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [songReady, setSongReady] = useState(true);
   const [modeText, setModeText] = useState('');
+  const [currentPlayingLyric, setPlayingLyric] = useState('');
   let percent = isNaN(currentTime/duration) ? 0  :currentTime/duration;
 
+  console.log(currentPlayingLyric)
   const {
     playing,
     currentSong,
@@ -61,6 +67,12 @@ function Player(props) {
   const cdImageRef = useRef();
   const miniWrapperRef = useRef();
   const miniImageRef = useRef();
+  const lyricLineRefs = useRef([]);
+
+  const songReady = useRef(true);
+  const currentLyric = useRef();
+  const currentLineNum = useRef(0);
+  const currentState = useRef(0);
 
   const song = currentSong;
 
@@ -73,23 +85,24 @@ function Player(props) {
   const normalPlayerRef = useRef();
   const miniPlayerRef = useRef();  
   const toastRef = useRef();
+  const lyricScrollRef = useRef();
 
   useEffect(() => {
     if(!playList.length || currentIndex === -1 || !playList[currentIndex] || playList[currentIndex].id === preSong.id) return;
-    if(!songReady){
+    if(!songReady.current){
       alert("操作过快！")
       return;
     } 
-    setSongReady(false);
+    songReady.current = false;
     let current = playList[currentIndex];
     changeCurrentDispatch(current);
     setPreSong(current);
     audioRef.current.src = `https://music.163.com/song/media/outer/url?id=${current.id}.mp3`;
-    audioRef.current.play();
     setTimeout(() => {
-      setSongReady(true);
-    }, 100);
+      songReady.current = true;
+    }, 1000);
     togglePlayingDispatch(true);
+    getLyric(current.id);
     setCurrentTime(0);
     setDuration(current.dt/1000 | 0);
     // eslint-disable-next-line
@@ -97,7 +110,35 @@ function Player(props) {
 
   useEffect(() => {
     playing ? audioRef.current.play() : audioRef.current.pause();
-  }, [playing])
+  }, [playing]);
+
+  const handleLyric = ({lineNum, txt}) => {
+    if(!lyricScrollRef.current) return;
+    currentLineNum.current = lineNum;
+    setPlayingLyric(txt);
+    let bScroll = lyricScrollRef.current.getBScroll();
+    if(lineNum > 5) {
+      let lineEl = lyricLineRefs.current[lineNum - 5];
+      bScroll.scrollToElement(lineEl, 1000);
+    }
+  }
+
+  const getLyric = (id) => {
+    let lyric = '';
+    if(currentLyric.current) {
+      currentLyric.current.stop();
+    }
+    getLyricRequest(id).then(data => {
+      if(!data.lrc)return;
+      lyric = data.lrc.lyric;
+      audioRef.current.play();
+      currentLyric.current = new Lyric(lyric, handleLyric);
+      currentLyric.current.play();
+      currentLyric.current.seek(0);
+    }).catch(() => {
+      audioRef.current.play();
+    })
+  };
 
   const _getPosAndScale = () => {
     const targetWidth = 40;
@@ -145,9 +186,17 @@ function Player(props) {
     const cdWrapperDom = cdWrapperRef.current;
     animations.unregisterAnimation('move');
     cdWrapperDom.style.animation = '';
-  }
+    //以下同步歌词的位置
+    if(currentLineNum.current && currentLyric.current.lines.length) {
+      handleLyric({
+        lineNum: currentLineNum.current, 
+        txt: currentLyric.current.lines[currentLineNum.current].txt
+      }); 
+    }
+  };
 
   const leave = () => {
+    if(!cdWrapperRef.current) return;
     const cdWrapperDom = cdWrapperRef.current;
     cdWrapperDom.style.transition = 'all 0.4s';
     const {x, y, scale} = _getPosAndScale();
@@ -155,6 +204,7 @@ function Player(props) {
   }
 
   const afterLeave = () => {
+    if(!cdWrapperRef.current) return;
     const cdWrapperDom = cdWrapperRef.current;
     cdWrapperDom.style.transition = ''
     cdWrapperDom.style[transform] = '';
@@ -165,6 +215,7 @@ function Player(props) {
   const clickPlaying = (e, state) => {
     e.stopPropagation();
     togglePlayingDispatch(state);
+    currentLyric.current.togglePlay();
   }
 
   const onProgressChange = (curPercent) => {
@@ -173,6 +224,9 @@ function Player(props) {
     audioRef.current.currentTime = newTime;
     if(!playing) {
       togglePlayingDispatch(true);
+    }
+    if(currentLyric.current) {
+      currentLyric.current.seek(newTime * 1000);
     }
   }
 
@@ -184,6 +238,9 @@ function Player(props) {
     audioRef.current.currentTime =  0;
     changePlayingState(true);
     audioRef.current.play();
+    if(currentLyric.current) {
+      currentLyric.current.seek(0);
+    }
   }
 
   const handlePrev = () => {
@@ -193,6 +250,7 @@ function Player(props) {
     }
     let index = currentIndex - 1;
     if(index === 0) index = playList.length - 1;
+    if(!playing) togglePlayingDispatch(true);
     changeCurrentIndexDispatch(index);
   }
 
@@ -203,6 +261,7 @@ function Player(props) {
     }
     let index = currentIndex + 1;
     if(index === playList.length) index = 0;
+    if(!playing) togglePlayingDispatch(true);
     changeCurrentIndexDispatch(index);
   }
 
@@ -253,6 +312,14 @@ function Player(props) {
     alert("播放出错");
   }
   
+  const toggleCurrentState = () => {
+    if(currentState.current !== 'lyric') {
+    console.log("geci ")
+      currentState.current = 'lyric';
+    } else {
+      currentState.current = '';
+    }
+  }
   const normalPlayer = () => {
     const song = currentSong;
     if(isEmptyObject(song)) return;
@@ -271,6 +338,7 @@ function Player(props) {
           <div className="background">
             <img src={song.al.picUrl + "?param=300x300"} width="100%" height="100%" alt="歌曲图片"/>
           </div>
+          <div className="background layer"></div>
           <Top className="top">
             <div className="back" onClick={() => setFull(false)}>
               <i className="iconfont icon-back">&#xe662;</i>
@@ -278,14 +346,50 @@ function Player(props) {
             <h1 className="title">{song.name}</h1>
             <h1 className="subtitle">{getName(song.ar)}</h1>
           </Top>
-          <Middle>
-            <div>
-              <CDWrapper ref={cdWrapperRef}>
-                <div className="cd" >
+          <Middle ref={cdWrapperRef} onClick={toggleCurrentState}>
+            <CSSTransition
+             timeout={400}
+             classNames="fade" 
+             in={currentState.current !== 'lyric'} 
+            >
+              <CDWrapper 
+                style={{visibility: currentState.current !== 'lyric'? 'visible': 'hidden'}}
+              >
+                <div className="cd">
                   <img ref={cdImageRef} className={`image play ${playing ? "": "pause"}`} src={song.al.picUrl + "?param=400x400"} alt=""/>
                 </div>
+                <p className="playing_lyric">{currentPlayingLyric}</p>
               </CDWrapper>
-            </div>
+            </CSSTransition>
+            <CSSTransition
+              timeout={400}
+              classNames="fade" 
+              in={currentState.current === 'lyric'} 
+            >
+              <LyricContainer>
+                <Scroll ref={lyricScrollRef} >
+                  <LyricWrapper 
+                    style={{visibility: currentState.current === 'lyric'? 'visible': 'hidden'}}
+                    className="lyric_wrapper" 
+                  >
+                    {
+                      currentLyric.current ?
+                      currentLyric.current.lines.map((item, index) => {
+                        return (
+                          <p 
+                            className={`text ${currentLineNum.current===index ? 'current' : ''}`} 
+                            key={item+index} 
+                            ref={el => lyricLineRefs.current.push(el) }>
+                            {item.txt}
+                          </p>
+                        ) 
+                      })
+                      : null
+                    }
+                  </LyricWrapper>
+                </Scroll>
+              </LyricContainer>
+            </CSSTransition>
           </Middle>
           <Bottom className="bottom">
             <ProgressWrapper>
