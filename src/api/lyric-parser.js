@@ -33,14 +33,12 @@ export default class Lyric {
     this.curLine = 0
 
     this._init()
-    console.log(lrc)
   }
 
   _init() {
     this._initTag()
 
     this._initLines()
-    console.log(this.lines)
   }
 
   _initTag() {
@@ -112,6 +110,8 @@ export default class Lyric {
     this.state = STATE_PLAYING
 
     this.curNum = this._findCurNum(startTime)
+    //现在正处于第this.curNum-1行
+    this._callHandler(this.curNum-1);
     this.startStamp = +new Date() - startTime
 
     if (this.curNum < this.lines.length) {

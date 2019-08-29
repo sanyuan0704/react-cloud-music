@@ -74,7 +74,7 @@ export function prefixStyle(style) {
 }
 
 //判断一个对象是否为空对象
-export const isEmptyObject = (obj) => Object.keys(obj).length === 0;
+export const isEmptyObject = (obj) => !obj || Object.keys(obj).length === 0;
 
 //转换歌曲播放时间
 export const formatPlayTime = (interval) => {
@@ -122,4 +122,9 @@ export const findIndex = (song, list) => {
   return list.findIndex(item => {
     return song.id === item.id;
   });
+}
+
+//拼接出歌曲的url链接
+export const getSongUrl = (id) =>{
+  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`;
 }
