@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "react-router-config": "^5.0.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
+    "redux": "^4.0.4",
+    "redux-immutable": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.2"
   },
   "scripts": {
