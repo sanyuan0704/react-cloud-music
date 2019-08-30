@@ -15,7 +15,7 @@ export const Top = styled.div`
       font-size: 25px;
     }
   }
-`
+`;
 
 export const Tab = styled.div`
   height: 44px;
@@ -37,7 +37,7 @@ export const Tab = styled.div`
       }
     }
   }
-`
+`;
 
 export const TabItem = styled.div`
   height: 100%;
@@ -45,4 +45,4 @@ export const TabItem = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`
+`;

@@ -29,8 +29,8 @@ function Recommend(props){
     <Content play={songsCount}>
       <Scroll className="list" onScroll={() => forceCheck()}>
         <div>
-            <Slider bannerList={bannerList}></Slider>
-            <RecommendList recommendList={recommendList}></RecommendList>
+          <Slider bannerList={bannerList}></Slider>
+          <RecommendList recommendList={recommendList}></RecommendList>
         </div>
       </Scroll>
       {enterLoading? <EnterLoading><Loading></Loading></EnterLoading> : null}

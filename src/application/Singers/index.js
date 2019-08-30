@@ -43,14 +43,14 @@ function Singers(props){
 
   const handleUpdateCategory = (newVal) => {
     if(category === newVal) return;
-    scrollRef.current.refresh();
     updateCategory(newVal);
+    scrollRef.current.refresh();
   };
 
   const handleUpdateAlpha = (newVal) => {
     if(alpha === newVal) return;
-    scrollRef.current.refresh();
     updateAlpha(newVal);
+    scrollRef.current.refresh();
   };
 
   const renderSingerList = () => {
