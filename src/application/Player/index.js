@@ -275,7 +275,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(changePlayingState(data));
     },
     toggleFullScreenDispatch(data) {
-      console.log("data", data);
       dispatch(changeFullScreen(data));
     },
     togglePlayListDispatch(data) {
