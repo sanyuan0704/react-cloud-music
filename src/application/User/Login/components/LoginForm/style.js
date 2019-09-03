@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import global from "../../../../assets/global-style";
+import global from "../../../../../assets/global-style";
 
 export const FormContainer = styled.div`
   display: flex;
@@ -12,7 +12,6 @@ export const FormContainer = styled.div`
 export const Button = styled.span`
   background: ${props =>
     props.background ? `${props.background}` : `${global["official-red"]}`};
-
   color: ${props =>
     props.color ? `${props.color}` : `${global["official-red"]}`};
   height: 50px;
@@ -25,6 +24,7 @@ export const Button = styled.span`
   align-items: center;
   border: 1px solid #fff;
   margin-bottom: 20px;
+  cursor: pointer;
 `;
 
 export const BeautyCheckBox = styled.ul`
@@ -47,8 +47,8 @@ export const BeautyCheckBox = styled.ul`
     padding: 2px;
     border: 1px solid #fff;
     border-radius: 100%;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     background-clip: content-box;
     cursor: pointer;
     transition: all 300ms;
