@@ -18,6 +18,7 @@ export const Container = styled.div`
     text-align: center;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     input {
       border: none;
       outline: none;
@@ -25,10 +26,13 @@ export const Container = styled.div`
       padding-left: 10px;
       font-size: 22px;
       font-weight: bold;
+      height: 30px;
+      line-height: 30px;
     }
   }
   hr {
     margin: 0 10%;
+    margin-top: 10px;
     background-color: #ccc;
     height: 1px;
     border: none;

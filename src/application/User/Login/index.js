@@ -7,7 +7,8 @@ import PhoneForm from "./components/PhoneForm";
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 
-const Login = ({ LoginByPhoneDispatch, userInfo }) => {
+const Login = props => {
+  const { LoginByVcodeDispatch, sentVcodeDispatch, sentStatus } = props;
   const [inPhone, setInPhone] = useState(false);
   const jumpToLogin = method => {
     if (method === "phone") {
@@ -17,7 +18,6 @@ const Login = ({ LoginByPhoneDispatch, userInfo }) => {
   const onPhoneBack = () => {
     setInPhone(false);
   };
-
   return (
     <>
       <CSSTransition in={!inPhone} timeout={500} classNames="push-out">
@@ -33,8 +33,11 @@ const Login = ({ LoginByPhoneDispatch, userInfo }) => {
       <CSSTransition in={inPhone} timeout={500} classNames="push-in">
         <LoginContainer>
           <PhoneForm
-            loginByPhone={LoginByPhoneDispatch}
+            // loginByPhone={LoginByPhoneDispatch}
+            loginByVcode={LoginByVcodeDispatch}
             onClickBack={onPhoneBack}
+            sentVcode={sentVcodeDispatch}
+            sentStatus={sentStatus}
           />
         </LoginContainer>
       </CSSTransition>
@@ -44,13 +47,20 @@ const Login = ({ LoginByPhoneDispatch, userInfo }) => {
 
 // 映射Redux全局的state到组件的props上
 const mapStateToProps = state => ({
-  userInfo: state.getIn(["user", "userInfo"])
+  userInfo: state.getIn(["user", "userInfo"]),
+  sentStatus: state.getIn(["user", "sentStatus"])
 });
 // 映射dispatch到props上
 const mapDispatchToProps = dispatch => {
   return {
     LoginByPhoneDispatch(phone, password) {
       dispatch(actionCreators.loginByPhone(phone, password));
+    },
+    LoginByVcodeDispatch(phone, vcode) {
+      dispatch(actionCreators.loginByVcode(phone, vcode));
+    },
+    sentVcodeDispatch(phone) {
+      dispatch(actionCreators.sentVcode(phone));
     }
   };
 };
