@@ -4,35 +4,35 @@ import { VcodeBox, Container } from "./style";
 const maxLength = 4;
 const StepTwo = props => {
   const { phone, triggerLogin } = props;
+  const [triggered, setTriggered] = useState(false);
   const [cursorIndex, setCursorIndex] = useState(0);
   const [vcode, setVcode] = useState("");
   const [timer, setTimer] = useState(60);
   const inputRef = useRef();
 
   useEffect(() => {
-    inputRef.current.focus();
     let theTimer;
     if (!theTimer) {
       theTimer = setInterval(() => {
         setTimer(timer => timer - 1);
+        if(timer <= 0) clearTimeout(theTimer);
       }, 1000);
     }
     return () => {
       clearTimeout(theTimer);
     };
-  }, [vcode]);
+  }, [timer]);
 
   useEffect(() => {
-    if (vcode.length === 4) {
+    if (vcode.length === 4 && !triggered) {
       triggerLogin(vcode);
+      setTriggered(true);
     }
-  }, [vcode, triggerLogin]);
+  }, [vcode, triggerLogin, triggered]);
 
   const onChangeVcode = e => {
+    if(!e.target.value) return;
     const val = e.target.value;
-    if (!val) {
-      return;
-    }
     setVcode(val);
     setCursorIndex(val.split("").length);
   };
@@ -63,7 +63,7 @@ const StepTwo = props => {
               key={idx}
               className={`line ${cursorIndex === idx ? "animated" : ""}`}
             >
-              {vcode.split("")[idx]}
+              {vcode[idx]}
             </label>
           ))}
         </div>

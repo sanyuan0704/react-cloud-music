@@ -3,7 +3,7 @@ import {
   sentVcodeRequest,
   loginByVcodeRequest
 } from "../../../../api/request";
-import { CHANGE_USER_INFO, CHANGE_SENT_STATUS } from "./constants";
+import { CHANGE_USER_INFO, CHANGE_SENT_STATUS, CHANGE_IS_LOGIN } from "./constants";
 
 export const saveUserInfo = data => ({
   type: CHANGE_USER_INFO,
@@ -12,6 +12,11 @@ export const saveUserInfo = data => ({
 
 export const saveSentStatus = data => ({
   type: CHANGE_SENT_STATUS,
+  data
+});
+
+export const changeIslogin = data => ({
+  type: CHANGE_IS_LOGIN,
   data
 });
 

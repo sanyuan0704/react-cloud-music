@@ -3,7 +3,8 @@ import { fromJS } from "immutable";
 
 const defaultState = fromJS({
   userInfo: {},
-  sentStatus: false
+  sentStatus: false,
+  isLogin: false
 });
 
 export default (state = defaultState, action) => {
@@ -12,6 +13,8 @@ export default (state = defaultState, action) => {
       return state.set("userInfo", action.data);
     case actionTypes.CHANGE_SENT_STATUS:
       return state.set("sentStatus", action.data);
+    case actionTypes.CHANGE_IS_LOGIN:
+      return state.set("isLogin", action.data);
     default:
       return state;
   }
