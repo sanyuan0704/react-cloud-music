@@ -1,16 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { withRouter } from "react-router-dom";
-import {
-  Button,
-  BeautyCheckBox,
-  OtherLoginLink,
-  FormContainer
-} from "./LoginForm.style";
+import { Button, BeautyCheckBox, OtherLoginLink, FormContainer } from "./style";
 
 const noEffect = e => e.preventDefault();
 
-const LoginForm = ({ history }) => {
+const LoginForm = ({ history, jumpToLogin }) => {
   const jumpToIndex = () => {
     history.push("/recommend");
   };
@@ -19,7 +14,13 @@ const LoginForm = ({ history }) => {
   };
   return (
     <FormContainer>
-      <Button background="#fff" onClick={jumpToIndex}>
+      <Button
+        background="#fff"
+        onClick={e => {
+          e.preventDefault();
+          jumpToLogin("phone");
+        }}
+      >
         手机号登录
       </Button>
       <Button color="#fff" onClick={jumpToIndex}>
@@ -28,7 +29,7 @@ const LoginForm = ({ history }) => {
       <BeautyCheckBox>
         <li>
           <input type="radio" id="tiaokuan" hidden />
-          <label for="tiaokuan"></label>
+          <label htmlFor="tiaokuan"></label>
           <span>
             同意<a onClick={noEffect}>{"<<服务条款>>"}</a>和
             <a onClick={noEffect}>{"<<隐私政策>>"}</a>
@@ -38,17 +39,17 @@ const LoginForm = ({ history }) => {
       <OtherLoginLink>
         <img
           onClick={loginViaThirdApi}
-          src={require("../../../../assets/wechat.svg")}
+          src={require("../../../../../assets/wechat.svg")}
           alt=""
         />
         <img
           onClick={loginViaThirdApi}
-          src={require("../../../../assets/sina.svg")}
+          src={require("../../../../../assets/sina.svg")}
           alt=""
         />
         <img
           onClick={loginViaThirdApi}
-          src={require("../../../../assets/mail.svg")}
+          src={require("../../../../../assets/mail.svg")}
           alt=""
         />
       </OtherLoginLink>
