@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import { Header, Container } from "./style";
+import { trimPhone } from "../../../../../api/utils";
+import StepOne from "./step-one";
+import StepTwo from "./step-two";
 
-const trimPhone = val => val.replace(/(^\s+)|(\s+$)|\s+/g, "");
-const PhoneForm = ({ loginByPhone, onClickBack }) => {
+const PhoneForm = props => {
+  const { onClickBack, sentVcode, sentStatus, loginByVcode } = props;
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
 
-  const onClickLogin = () => {
-    loginByPhone(trimPhone(phone), password);
+  //验证码触发登录操作
+  const triggerLogin = vcode => {
+    loginByVcode(trimPhone(phone), vcode);
   };
+
+  //切换手机号码和验证码表单
+  const onClickNext = () => {
+    sentVcode(trimPhone(phone));
+  };
+
   const onChangePhone = e => {
     let newValue = e.target.value;
     let oldValue = phone;
@@ -24,10 +33,6 @@ const PhoneForm = ({ loginByPhone, onClickBack }) => {
     setPhone(result);
   };
 
-  const onChangePassword = e => {
-    setPassword(e.target.value);
-  };
-
   return (
     <Container>
       <Header>
@@ -38,29 +43,15 @@ const PhoneForm = ({ loginByPhone, onClickBack }) => {
         />
         手机号登录
       </Header>
-
-      <p className="tips">
-        &emsp;&emsp;暂时不支持验证码登录，请输入手机号和密码
-      </p>
-
-      <p className="input">
-        +86
-        <input type="text" onChange={onChangePhone} value={phone} />
-      </p>
-      <hr />
-      <p className="input">
-        密码：
-        <input type="password" onChange={onChangePassword} value={password} />
-      </p>
-
-      <hr />
-      <span
-        className={`LoginBtn 
-          ${(trimPhone(phone).length < 11 || !password) && "disabled"}`}
-        onClick={onClickLogin}
-      >
-        登录
-      </span>
+      {!sentStatus ? (
+        <StepOne
+          onChangePhone={onChangePhone}
+          onClickNext={onClickNext}
+          phone={phone}
+        />
+      ) : (
+        <StepTwo triggerLogin={triggerLogin} phone={phone} />
+      )}
     </Container>
   );
 };

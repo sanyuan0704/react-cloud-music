@@ -59,3 +59,11 @@ export const loginByPhoneRequest = (phone, password) => {
     `/login/cellphone?phone=${phone}&password=${password}`
   );
 };
+
+export const sentVcodeRequest = phone => {
+  return axiosInstance.get(`/captcha/sent?phone=${phone}`);
+};
+
+export const loginByVcodeRequest = (phone, vcode) => {
+  return axiosInstance.get(`/captcha/verify?phone=${phone}&captcha=${vcode}`);
+};
