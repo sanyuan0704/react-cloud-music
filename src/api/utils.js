@@ -1,14 +1,15 @@
 import { RankTypes } from "./config";
-//节流函数
-let timer;
+//防抖函数
 
 const debounce = (func, delay) => {
-  return (...args) => {
-    if (timer) {
+  let timer;
+  return function (...args) {
+    if(timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
       func.apply(this, args);
+      clearTimeout(timer);
     }, delay);
   };
 };

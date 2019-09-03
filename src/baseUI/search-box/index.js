@@ -1,4 +1,4 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useState, useEffect, useMemo} from 'react';
 import styled from 'styled-components';
 import style from '../../assets/global-style';
 import { debounce } from './../../api/utils';
@@ -43,13 +43,17 @@ const SearchBox = (props) => {
   const { newQuery } = props;
   const { handleQuery } = props;
 
-  useEffect(() => {
-    queryRef.current.focus();
-  }, [])
+  let handleQueryDebounce = useMemo(() => {
+    return debounce(handleQuery, 500);
+  }, [handleQuery]);
 
   useEffect(() => {
-    debounce(handleQuery, 500)(query);
-    // eslint-disable-next-line
+    queryRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    handleQueryDebounce(query);
+    // eslint-disable-next-line 
   }, [query]);
 
   useEffect(() => {
@@ -60,14 +64,12 @@ const SearchBox = (props) => {
   }, [newQuery]);
 
   const handleChange = (e) => {
-    if(e.currentTarget.value === '')
-    handleQuery('');
-    setQuery(e.currentTarget.value)
+    setQuery(e.currentTarget.value);
   };
 
   const clearQuery = () => {
     setQuery('');
-    handleQuery('');
+    queryRef.current.focus();
   }
   
   const displayStyle = query ? {display: 'block'}: {display: 'none'};
@@ -79,6 +81,6 @@ const SearchBox = (props) => {
       <i className="iconfont icon-delete" onClick={clearQuery} style={displayStyle}>&#xe600;</i>
     </SearchBoxWrapper>
   )
-}
+};
 
 export default React.memo(SearchBox);

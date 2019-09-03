@@ -23,6 +23,7 @@ export const ListItem = styled.div`
   position: relative;
   width: 32%;
   .decorate {
+    z-index: 1;
     position: absolute;
     top: 0;
     width: 100%;
@@ -35,6 +36,7 @@ export const ListItem = styled.div`
     height: 0;
     padding-bottom: 100%;
     .play_count {
+      z-index: 1;
       position: absolute;
       right: 2px;
       top: 2px;

@@ -2,6 +2,8 @@
 
 [在线体验地址](http://47.105.150.105:8010)
 
+系列拆解文章已经出炉，整理成了电子书，请点[这里](https://sanyuan0704.github.io/react-cloud-music/)查看
+
 移动端和PC端的chrome浏览器食用更佳 : )
 
 打开方式:
