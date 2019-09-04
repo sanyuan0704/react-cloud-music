@@ -9,10 +9,6 @@ const StepOne = props => {
   });
   return (
     <>
-      <p className="tips">
-        &emsp;&emsp;暂时不支持验证码登录，请输入手机号和密码
-      </p>
-
       <p className="input">
         +86
         <input

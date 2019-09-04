@@ -30,6 +30,7 @@ const StepTwo = props => {
   }, [vcode, triggerLogin]);
 
   const onChangeVcode = e => {
+    if (!e.target.value) return;
     const val = e.target.value;
     setVcode(val);
     setCursorIndex(val.split("").length);
@@ -72,7 +73,7 @@ const StepTwo = props => {
               key={idx}
               className={`line ${cursorIndex === idx ? "animated" : ""}`}
             >
-              {vcode.split("")[idx]}
+              {vcode[idx]}
             </label>
           ))}
         </div>
