@@ -12,6 +12,9 @@ export const Container = styled.div`
     padding: 0 25px;
     margin-top: 10px;
     justify-content: space-between;
+    .sentBtn {
+      color: #0066cc;
+    }
   }
 `;
 export const VcodeBox = styled.div`
@@ -37,7 +40,7 @@ export const VcodeBox = styled.div`
   .v-code input {
     position: absolute;
     top: -100%;
-    left: -666666px;
+    left: -100%;
     opacity: 0;
   }
   .v-code .line {

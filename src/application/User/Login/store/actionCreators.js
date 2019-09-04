@@ -3,7 +3,11 @@ import {
   sentVcodeRequest,
   loginByVcodeRequest
 } from "../../../../api/request";
-import { CHANGE_USER_INFO, CHANGE_SENT_STATUS, CHANGE_IS_LOGIN } from "./constants";
+import {
+  CHANGE_USER_INFO,
+  CHANGE_SENT_STATUS,
+  CHANGE_LOGIN_STATUS
+} from "./constants";
 
 export const saveUserInfo = data => ({
   type: CHANGE_USER_INFO,
@@ -15,8 +19,8 @@ export const saveSentStatus = data => ({
   data
 });
 
-export const changeIslogin = data => ({
-  type: CHANGE_IS_LOGIN,
+export const saveLoginStatus = data => ({
+  type: CHANGE_LOGIN_STATUS,
   data
 });
 
@@ -36,7 +40,10 @@ export const loginByVcode = (phone, vcode) => {
   return dispatch => {
     loginByVcodeRequest(phone, vcode)
       .then(res => {
-        dispatch(saveUserInfo(res));
+        if (res.code === 200) {
+          dispatch(saveUserInfo(res));
+          dispatch(saveLoginStatus(true));
+        }
       })
       .catch(() => {
         console.log("登录失败！");
