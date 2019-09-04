@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Header, Container } from "./style";
 import { trimPhone } from "../../../../../api/utils";
 import StepOne from "./step-one";
@@ -9,12 +9,15 @@ const PhoneForm = props => {
   const [phone, setPhone] = useState("");
 
   //验证码触发登录操作
-  const triggerLogin = vcode => {
-    loginByVcode(trimPhone(phone), vcode);
-  };
+  const triggerLogin = useCallback(
+    vcode => {
+      loginByVcode(trimPhone(phone), vcode);
+    },
+    [phone, loginByVcode]
+  );
 
   //切换手机号码和验证码表单
-  const onClickNext = () => {
+  const triggerSentVcode = () => {
     sentVcode(trimPhone(phone));
   };
 
@@ -46,11 +49,15 @@ const PhoneForm = props => {
       {!sentStatus ? (
         <StepOne
           onChangePhone={onChangePhone}
-          onClickNext={onClickNext}
+          onClickNext={triggerSentVcode}
           phone={phone}
         />
       ) : (
-        <StepTwo triggerLogin={triggerLogin} phone={phone} />
+        <StepTwo
+          triggerLogin={triggerLogin}
+          phone={phone}
+          reSentVcode={triggerSentVcode}
+        />
       )}
     </Container>
   );

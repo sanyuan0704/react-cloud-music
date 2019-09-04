@@ -6,7 +6,7 @@ const StepOne = props => {
   const inputRef = useRef();
   useEffect(() => {
     inputRef.current.focus();
-  }, []);
+  });
   return (
     <>
       <p className="tips">

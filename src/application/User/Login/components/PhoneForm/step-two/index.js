@@ -2,25 +2,26 @@ import React, { useState, useRef, useEffect } from "react";
 import { VcodeBox, Container } from "./style";
 
 const maxLength = 4;
+const sentPeriod = 60;
+let theTimer;
 const StepTwo = props => {
-  const { phone, triggerLogin } = props;
+  const { phone, triggerLogin, reSentVcode } = props;
   const [cursorIndex, setCursorIndex] = useState(0);
   const [vcode, setVcode] = useState("");
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(sentPeriod);
   const inputRef = useRef();
-
   useEffect(() => {
     inputRef.current.focus();
-    let theTimer;
-    if (!theTimer) {
-      theTimer = setInterval(() => {
-        setTimer(timer => timer - 1);
-      }, 1000);
+    if (timer === 0) {
+      clearInterval(theTimer);
     }
-    return () => {
-      clearTimeout(theTimer);
-    };
-  }, [vcode]);
+    if (timer !== sentPeriod) {
+      return;
+    }
+    theTimer = setInterval(() => {
+      setTimer(timer => timer - 1);
+    }, 1000);
+  }, [timer]);
 
   useEffect(() => {
     if (vcode.length === 4) {
@@ -30,11 +31,13 @@ const StepTwo = props => {
 
   const onChangeVcode = e => {
     const val = e.target.value;
-    if (!val) {
-      return;
-    }
     setVcode(val);
     setCursorIndex(val.split("").length);
+  };
+
+  const onClickSentVcode = () => {
+    reSentVcode();
+    setTimer(sentPeriod);
   };
 
   return (
@@ -44,7 +47,13 @@ const StepTwo = props => {
         <span>
           {phone.replace(/(\d{3})\s(\d{4})\s(\d{4})/g, "+86 $1 **** $3")}
         </span>
-        <span>{timer}S</span>
+        {timer ? (
+          <span>{timer}S</span>
+        ) : (
+          <span className="sentBtn" onClick={onClickSentVcode}>
+            重新发送
+          </span>
+        )}
       </p>
       <VcodeBox>
         <h2 className="heading-2">验证码:</h2>
