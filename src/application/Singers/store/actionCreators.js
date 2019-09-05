@@ -4,8 +4,6 @@ import {
 } from "../../../api/request";
 import {
   CHANGE_SINGER_LIST,
-  CHANGE_CATOGORY,
-  CHANGE_ALPHA,
   CHANGE_PAGE_COUNT,
   CHANGE_PULLUP_LOADING,
   CHANGE_PULLDOWN_LOADING,
@@ -14,16 +12,6 @@ import {
 import {
   fromJS
 } from 'immutable';
-
-export const changeCategory = (data) => ({
-  type: CHANGE_CATOGORY,
-  data
-});
-
-export const changeAlpha = (data) => ({
-  type: CHANGE_ALPHA,
-  data
-});
 
 const changeSingerList = (data) => ({
   type: CHANGE_SINGER_LIST,
