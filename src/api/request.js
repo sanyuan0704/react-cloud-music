@@ -31,7 +31,9 @@ export const getSingerInfoRequest = id => {
 };
 
 export const getRankListDetailRequest = id => {
-  return axiosInstance.get(`/top/list/?idx=${id}`);
+  // return axiosInstance.get(`/top/list/?idx=${id}`);
+  return axiosInstance.get(`/playlist/detail?id=${id}`);
+
 };
 
 export const getHotKeyWordsRequest = () => {
