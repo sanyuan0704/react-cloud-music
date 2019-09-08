@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { trimPhone } from "../../../../../../api/utils";
+import { trimPhone } from "../../../../../api/utils";
 
 const StepOne = props => {
   const { onChangePhone, onClickNext, phone } = props;

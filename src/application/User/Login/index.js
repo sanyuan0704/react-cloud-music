@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import { Container, LogoImg, LogoContainer, LoginContainer } from "./style";
 import { withRouter } from "react-router-dom";
 import * as actionCreators from "./store/actionCreators";
-import LoginForm from "./components/LoginForm";
-import PhoneForm from "./components/PhoneForm";
+import LoginForm from "./LoginForm";
+import PhoneForm from "./PhoneForm";
 
 import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";

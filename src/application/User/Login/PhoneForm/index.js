@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Header, Container } from "./style";
-import { trimPhone } from "../../../../../api/utils";
+import { trimPhone } from "../../../../api/utils";
 import StepOne from "./step-one";
 import StepTwo from "./step-two";
 
@@ -40,7 +40,7 @@ const PhoneForm = props => {
     <Container>
       <Header>
         <img
-          src={require("../../../../../assets/back.svg")}
+          src={require("../../../../assets/back.svg")}
           alt=""
           onClick={onClickBack}
         />

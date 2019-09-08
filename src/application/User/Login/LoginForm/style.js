@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import global from "../../../../../assets/global-style";
+import global from "../../../../assets/global-style";
 
 export const FormContainer = styled.div`
   display: flex;

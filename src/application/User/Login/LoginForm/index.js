@@ -45,17 +45,17 @@ const LoginForm = forwardRef((props, ref) => {
       <OtherLoginLink>
         <img
           onClick={loginViaThirdApi}
-          src={require("../../../../../assets/wechat.svg")}
+          src={require("../../../../assets/wechat.svg")}
           alt=""
         />
         <img
           onClick={loginViaThirdApi}
-          src={require("../../../../../assets/sina.svg")}
+          src={require("../../../../assets/sina.svg")}
           alt=""
         />
         <img
           onClick={loginViaThirdApi}
-          src={require("../../../../../assets/mail.svg")}
+          src={require("../../../../assets/mail.svg")}
           alt=""
         />
       </OtherLoginLink>
