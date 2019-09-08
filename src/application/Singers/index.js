@@ -84,7 +84,7 @@ function Singers(props){
       </NavContainer>
       <ListContainer play={songsCount}>
         <Scroll 
-          onScroll = {() => forceCheck() } 
+          onScroll = {forceCheck} 
           pullUp={ handlePullUp }
           pullDown = { handlePullDown }
           ref={ scrollRef }

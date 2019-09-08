@@ -21,6 +21,9 @@ const StepTwo = props => {
     theTimer = setInterval(() => {
       setTimer(timer => timer - 1);
     }, 1000);
+    return () => {
+      clearTimeout(theTimer);
+    }
   }, [timer]);
 
   useEffect(() => {

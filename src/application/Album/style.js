@@ -31,7 +31,7 @@ export const TopDesc = styled.div`
   background-size: 100%;
   padding: 5px 20px;
   display: flex;
-  align-items: center
+  align-items: center;
   justify-content: space-around;
   box-sizing: border-box;
   width: 100%;
@@ -119,7 +119,7 @@ export const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
-  margin: 0 30px
+  margin: 0 30px;
   margin-top: -20px;
   margin-bottom: 10px;
   >div {

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { CSSTransition } from "react-transition-group";
 import animations from "create-keyframe-animation";
 import ProgressBar from "../../../baseUI/progress-bar/index";
@@ -128,9 +128,7 @@ function NormalPlayer(props) {
     const cdWrapperDom = cdWrapperRef.current;
     cdWrapperDom.style.transition = "all 0.4s";
     const { x, y, scale } = _getPosAndScale();
-    cdWrapperDom.style[
-      transform
-    ] = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+    cdWrapperDom.style[transform] = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
   };
 
   const afterLeave = () => {
@@ -149,6 +147,14 @@ function NormalPlayer(props) {
       currentState.current = "";
     }
   };
+
+  const clickPlayingCB = useCallback((e) => {
+    clickPlaying(e, !playing);
+  }, [clickPlaying, playing]);
+  
+  const pushLyricRefs = useCallback((el) => {
+    lyricLineRefs.current.push(el);
+  }, []);
 
   return (
     <CSSTransition
@@ -223,7 +229,7 @@ function NormalPlayer(props) {
                               currentLineNum === index ? "current" : ""
                             }`}
                             key={item + index}
-                            ref={el => lyricLineRefs.current.push(el)}
+                            ref={pushLyricRefs}
                           >
                             {item.txt}
                           </p>
@@ -259,7 +265,7 @@ function NormalPlayer(props) {
             <div className="icon i-center">
               <i
                 className="iconfont"
-                onClick={e => clickPlaying(e, !playing)}
+                onClick={clickPlayingCB}
                 dangerouslySetInnerHTML={{
                   __html: playing ? "&#xe723;" : "&#xe731;"
                 }}

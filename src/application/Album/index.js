@@ -12,6 +12,7 @@ import  Header  from './../../baseUI/header/index';
 import AlbumDetail from '../../components/album-detail/index';
 import { HEADER_HEIGHT } from './../../api/config';
 import MusicNote from '../../baseUI/music-note/index';
+import { isEmptyObject } from '../../api/utils';
 
 function Album(props) {
 
@@ -26,7 +27,8 @@ function Album(props) {
 
   const { currentAlbum, enterLoading, pullUpLoading, songsCount } = props;
   const { getAlbumDataDispatch, changePullUpLoadingStateDispatch } = props;
-
+  
+  let currentAlbumJS = currentAlbum.toJS();
 
   useEffect(() => {
     // setShowStatus(true);
@@ -79,19 +81,19 @@ function Album(props) {
         classNames="fly" 
         appear={true} 
         unmountOnExit
-        onExited={() => props.history.goBack()}
+        onExited={props.history.goBack}
       >
         <Container play={songsCount}>
           <Header ref={headerEl} title={title} handleClick={handleBack} isMarquee={isMarquee}></Header>
           {
-            Object.keys(currentAlbum).length !== 0 ? (
+            !isEmptyObject(currentAlbumJS) ? (
               <Scroll 
-                onScroll={(pos) => handleScroll(pos)} 
-                pullUp={() => handlePullUp()} 
+                onScroll={handleScroll} 
+                pullUp={handlePullUp} 
                 pullUpLoading={pullUpLoading}
                 bounceTop={false}
               >
-                <AlbumDetail currentAlbum={currentAlbum} pullUpLoading={pullUpLoading} musicAnimation={musicAnimation}></AlbumDetail>
+                <AlbumDetail currentAlbum={currentAlbumJS} pullUpLoading={pullUpLoading} musicAnimation={musicAnimation}></AlbumDetail>
               </Scroll>
             ) : null
           }
@@ -103,7 +105,7 @@ function Album(props) {
 }
 // 映射Redux全局的state到组件的props上
 const mapStateToProps = (state) => ({
-  currentAlbum: state.getIn(['album', 'currentAlbum']).toJS(),
+  currentAlbum: state.getIn(['album', 'currentAlbum']),
   pullUpLoading: state.getIn(['album', 'pullUpLoading']),
   enterLoading: state.getIn(['album', 'enterLoading']),
   startIndex: state.getIn(['album', 'startIndex']),

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Container } from "./style";
 import Header from "../../baseUI/header/index";
 import { ImgWrapper, CollectButton, SongListWrapper, BgLayer } from "./style";
@@ -19,9 +19,17 @@ function Singer(props) {
 
   const OFFSET = 5;
 
-  const { artist, songs, loading, songsCount } = props;
+  const { 
+    artist: immutableArtist, 
+    songs: immutableSongs, 
+    loading,
+    songsCount
+  } = props;
 
   const { getSingerDataDispatch } = props;
+
+  const artist = immutableArtist.toJS();
+  const songs = immutableSongs.toJS();
 
   const collectButton = useRef();
   const imageWrapper = useRef();
@@ -86,6 +94,10 @@ function Singer(props) {
     musicNoteRef.current.startAnimation({ x, y });
   };
 
+  const setShowStatusFalse = useCallback(() => {
+    setShowStatus(false);
+  }, [])
+
   return (
     <CSSTransition
       in={showStatus}
@@ -97,7 +109,7 @@ function Singer(props) {
     >
       <Container>
         <Header
-          handleClick={() => setShowStatus(false)}
+          handleClick={setShowStatusFalse}
           title={artist.name}
           ref={header}
         ></Header>
@@ -115,7 +127,7 @@ function Singer(props) {
               songs={songs}
               showCollect={false}
               usePageSplit={false}
-              musicAnimation={(x, y) => musicAnimation(x, y)}
+              musicAnimation={musicAnimation}
             ></SongsList>
           </Scroll>
         </SongListWrapper>
@@ -132,8 +144,8 @@ function Singer(props) {
 
 // 映射Redux全局的state到组件的props上
 const mapStateToProps = state => ({
-  artist: state.getIn(["singerInfo", "artist"]).toJS(),
-  songs: state.getIn(["singerInfo", "songsOfArtist"]).toJS(),
+  artist: state.getIn(["singerInfo", "artist"]),
+  songs: state.getIn(["singerInfo", "songsOfArtist"]),
   loading: state.getIn(["singerInfo", "loading"]),
   songsCount: state.getIn(["player", "playList"]).size
 });

@@ -28,9 +28,9 @@ function Player(props) {
 
   const {
     playing,
-    currentSong,
+    currentSong:immutableCurrentSong,
     currentIndex,
-    playList,
+    playList:immutablePlayList,
     mode,
     sequencePlayList,
     fullScreen
@@ -45,6 +45,9 @@ function Player(props) {
     changeModeDispatch,
     toggleFullScreenDispatch
   } = props;
+
+  const playList = immutablePlayList.toJS();
+  const currentSong = immutableCurrentSong.toJS();
 
   const [preSong, setPreSong] = useState({});
 
@@ -260,11 +263,11 @@ function Player(props) {
 const mapStateToProps = state => ({
   fullScreen: state.getIn(["player", "fullScreen"]),
   playing: state.getIn(["player", "playing"]),
-  currentSong: state.getIn(["player", "currentSong"]).toJS(),
+  currentSong: state.getIn(["player", "currentSong"]),
   showPlayList: state.getIn(["player", "showPlayList"]),
   mode: state.getIn(["player", "mode"]),
   currentIndex: state.getIn(["player", "currentIndex"]),
-  playList: state.getIn(["player", "playList"]).toJS(),
+  playList: state.getIn(["player", "playList"]),
   sequencePlayList: state.getIn(["player", "sequencePlayList"])
 });
 

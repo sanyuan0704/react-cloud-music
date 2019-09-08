@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import SearchBox from './../../baseUI/search-box/index';
 import Scroll from './../../baseUI/scroll/index';
 import { Container, ShortcutWrapper, HotKey } from './style';
@@ -19,7 +19,16 @@ const Search = (props) => {
   const [show, setShow] = useState(false);
   const musicNoteRef = useRef();
 
-  const {hotList, enterLoading, suggestList, songsCount, songsList} = props;
+  const {
+    hotList, 
+    enterLoading, 
+    suggestList: immutableSuggestList, 
+    songsCount, 
+    songsList: immutableSongsList
+  } = props;
+
+  const suggestList = immutableSuggestList.toJS();
+  const songsList = immutableSongsList.toJS();
 
   const {
     getHotKeyWordsDispatch,
@@ -125,11 +134,14 @@ const Search = (props) => {
     )
   };
 
-
   const selectItem = (e, id) => {
     getSongDetailDispatch(id);
     musicNoteRef.current.startAnimation({x:e.nativeEvent.clientX, y:e.nativeEvent.clientY});
   }
+  
+  const searchBack = useCallback(() => {
+    setShow(false);
+  }, []);
 
   const renderSongs = () => {
     return (
@@ -163,7 +175,7 @@ const Search = (props) => {
     >
       <Container play={songsCount}>
         <div className="search_box_wrapper">
-          <SearchBox back={() => setShow(false)} newQuery={query} handleQuery={handleQuery}></SearchBox>
+          <SearchBox back={searchBack} newQuery={query} handleQuery={handleQuery}></SearchBox>
         </div>
         <ShortcutWrapper show={!query}>
           <Scroll>
@@ -186,7 +198,7 @@ const Search = (props) => {
         </ShortcutWrapper>
         {/* 下面为搜索结果 */}
         <ShortcutWrapper show={query}>
-          <Scroll onScorll={() => forceCheck()}>
+          <Scroll onScorll={forceCheck}>
             <div>
               {renderSingers()}
               {renderAlbum()}
@@ -206,9 +218,9 @@ const Search = (props) => {
 const mapStateToProps = (state) => ({
   hotList: state.getIn(['search', 'hotList']),
   enterLoading: state.getIn(['search', 'enterLoading']),
-  suggestList: state.getIn(['search', 'suggestList']).toJS(),
+  suggestList: state.getIn(['search', 'suggestList']),
   songsCount: state.getIn(['player', 'playList']).size,
-  songsList: state.getIn(['search', 'songsList']).toJS()
+  songsList: state.getIn(['search', 'songsList'])
 });
 
 // 映射dispatch到props上

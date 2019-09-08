@@ -3,6 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 import ProgressCircle from '../../../baseUI/progress-circle';
 import { getName } from '../../../api/utils';
 import { MiniPlayerContainer } from './style';
+import { useCallback } from 'react';
 
 
 function MiniPlayer(props) {
@@ -13,17 +14,22 @@ function MiniPlayer(props) {
   const miniWrapperRef = useRef();
   const miniImageRef = useRef();
 
-  const handleTogglePlayList = (e, data) => {
-    togglePlayList(data);
+  const handleTogglePlayList = useCallback((e) => {
+    togglePlayList(true);
     e.stopPropagation();
-  }
+  }, [togglePlayList]);
+
   return (
     <CSSTransition 
       in={!full} 
       timeout={400} 
       classNames="mini" 
-      onEnter={() => miniPlayerRef.current.style.display = "flex"}
-      onExited={() => miniPlayerRef.current.style.display = "none"}
+      onEnter={() => {
+        miniPlayerRef.current.style.display = "flex";
+      }}
+      onExited={() => {
+        miniPlayerRef.current.style.display = "none";
+      }}
     >
       <MiniPlayerContainer ref={miniPlayerRef} onClick={() => setFullScreen(true)}>
         <div className="icon">
@@ -38,13 +44,13 @@ function MiniPlayer(props) {
         <div className="control">
           <ProgressCircle radius={32} percent={percent}>
             { playing ? 
-              <i className="icon-mini iconfont icon-pause" onClick={(e) => clickPlaying(e, false)}>&#xe650;</i>
+              <i className="icon-mini iconfont icon-pause" onClick={e => clickPlaying(e, false)}>&#xe650;</i>
               :
-              <i className="icon-mini iconfont icon-play" onClick={(e) => clickPlaying(e, true)}>&#xe61e;</i> 
+              <i className="icon-mini iconfont icon-play" onClick={e => clickPlaying(e, true)}>&#xe61e;</i> 
             }
           </ProgressCircle>
         </div>
-        <div className="control" onClick={(e) => handleTogglePlayList(e, true)}>
+        <div className="control" onClick={handleTogglePlayList}>
           <i className="iconfont">&#xe640;</i>
         </div>
       </MiniPlayerContainer>

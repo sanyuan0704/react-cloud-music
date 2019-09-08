@@ -101,8 +101,7 @@ export default [
             render: () => <Redirect to={"/recommend"} />
           },
           {
-            path: "/recommend/",
-            key: "home",
+            path: "/recommend",
             component: Recommend,
             routes: [
               {

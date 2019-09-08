@@ -19,7 +19,7 @@ export const Container = styled.div`
 
 export const List = styled.ul`
   margin-top: 10px;
-  padding: 0 5px
+  padding: 0 5px;
   display: ${props => props.globalRank ? "flex": "" };
   flex-direction: row;
   justify-content: space-between;

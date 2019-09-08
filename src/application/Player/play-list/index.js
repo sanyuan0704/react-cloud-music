@@ -14,6 +14,7 @@ import { changeCurrentSong, changeCurrentIndex, changePlayList, changePlayingSta
 import { playMode } from './../../../api/config';
 import { prefixStyle } from './../../../api/utils';
 import Confirm from './../../../baseUI/confirm/index';
+import { useCallback } from 'react';
 
 
 function PlayList(props) {
@@ -33,11 +34,11 @@ function PlayList(props) {
 
   const {
     currentIndex,
-    currentSong,
+    currentSong:immutableCurrentSong,
     showPlayList,
-    playList,
+    playList:immutablePlayList,
     mode,
-    sequencePlayList
+    sequencePlayList:immutableSequencePlayList
   } = props;
   const {
     togglePlayListDispatch,
@@ -47,6 +48,10 @@ function PlayList(props) {
     deleteSongDispatch,
     clearDispatch
   } = props;
+
+  const currentSong = immutableCurrentSong.toJS();
+  const playList = immutablePlayList.toJS();
+  const sequencePlayList = immutableSequencePlayList.toJS();
 
   const changeMode = (e) => {
     let newMode = (mode + 1)%3;
@@ -148,35 +153,45 @@ function PlayList(props) {
     )
   }
 
+  const onEnterCB = useCallback(() => {
+    setIsShow(true);
+    listWrapperRef.current.style[transform] = `translate3d(0, 100%, 0)`;
+  }, [transform]);
+ 
+  const onEnteringCB = useCallback(() => {
+    listWrapperRef.current.style["transition"] = "all 0.3s";
+    listWrapperRef.current.style[transform] = `translate3d(0, 0, 0)`;
+  }, [transform]);
+
+  const onExitCB = useCallback(() => {
+    listWrapperRef.current.style[transform] = `translate3d(0, ${distance}px, 0)`;
+  }, [distance,transform]);
+ 
+  const onExitingCB = useCallback(() => {
+    listWrapperRef.current.style["transition"] = "all 0.3s";
+    listWrapperRef.current.style[transform] = `translate3d(0px, 100%, 0px)`;
+  }, [transform]);
+
+  const onExitedCB = useCallback(() => {
+    setIsShow(false);
+    listWrapperRef.current.style[transform] = `translate3d(0px, 100%, 0px)`;
+  }, [transform]);
+
   return (
     <CSSTransition 
       in={showPlayList} 
       timeout={300} 
       classNames="list-fade"
-      onEnter={() => {
-        setIsShow(true);
-        listWrapperRef.current.style[transform] = `translate3d(0, 100%, 0)`;
-      }}
-      onEntering={() => {
-        listWrapperRef.current.style["transition"] = "all 0.3s";
-        listWrapperRef.current.style[transform] = `translate3d(0, 0, 0)`;
-      }}
-      onExit={() => {
-        listWrapperRef.current.style[transform] = `translate3d(0, ${distance}px, 0)`;
-      }}
-      onExiting={() => {
-        listWrapperRef.current.style["transition"] = "all 0.3s";
-        listWrapperRef.current.style[transform] = `translate3d(0px, 100%, 0px)`;
-      }}
-      onExited={() => {
-        setIsShow(false);
-        listWrapperRef.current.style[transform] = `translate3d(0px, 100%, 0px)`;
-      }}
+      onEnter={onEnterCB}
+      onEntering={onEnteringCB}
+      onExit={onExitCB}
+      onExiting={onExitingCB}
+      onExited={onExitedCB}
     >
       <PlayListWrapper 
         ref={playListRef} 
         style={isShow === true ? { display: "block" } : { display: "none" }} 
-        onClick={() =>  togglePlayListDispatch(false)}
+        onClick={() => togglePlayListDispatch(false)}
       >
         <div 
           className="list_wrapper" 
@@ -228,9 +243,9 @@ function PlayList(props) {
 // 映射Redux全局的state到组件的props上
 const mapStateToProps = (state) => ({
   currentIndex: state.getIn(['player', 'currentIndex']),
-  currentSong: state.getIn(['player', 'currentSong']).toJS(),
-  playList: state.getIn(['player', 'playList']).toJS(),
-  sequencePlayList: state.getIn(['player', 'sequencePlayList']).toJS(),
+  currentSong: state.getIn(['player', 'currentSong']),
+  playList: state.getIn(['player', 'playList']),
+  sequencePlayList: state.getIn(['player', 'sequencePlayList']),
   showPlayList: state.getIn(['player', 'showPlayList']),
   mode: state.getIn(['player', 'mode'])
 });

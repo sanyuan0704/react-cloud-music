@@ -16,21 +16,24 @@ function Recommend(props){
   const { getBannerDataDispatch, getRecommendListDataDispatch } = props;
 
   useEffect(() => {
-    if(!bannerList.length){
+    if(!bannerList.size){
       getBannerDataDispatch();
     }
-    if(!recommendList.length){
+    if(!recommendList.size){
       getRecommendListDataDispatch();
     }
     // eslint-disable-next-line
   }, []);
 
+  const bannerListJS = bannerList ? bannerList.toJS() : [];
+  const recommendListJS = recommendList ? recommendList.toJS() :[];
+
   return (
     <Content play={songsCount}>
-      <Scroll className="list" onScroll={() => forceCheck()}>
+      <Scroll className="list" onScroll={forceCheck}>
         <div>
-          <Slider bannerList={bannerList}></Slider>
-          <RecommendList recommendList={recommendList}></RecommendList>
+          <Slider bannerList={bannerListJS}></Slider>
+          <RecommendList recommendList={recommendListJS}></RecommendList>
         </div>
       </Scroll>
       {enterLoading? <EnterLoading><Loading></Loading></EnterLoading> : null}
@@ -41,8 +44,8 @@ function Recommend(props){
 
 // 映射Redux全局的state到组件的props上
 const mapStateToProps = (state) => ({
-  bannerList: state.getIn(['recommend', 'bannerList']).toJS(),
-  recommendList: state.getIn(['recommend', 'recommendList']).toJS(),
+  bannerList: state.getIn(['recommend', 'bannerList']),
+  recommendList: state.getIn(['recommend', 'recommendList']),
   songsCount: state.getIn(['player', 'playList']).size,
   enterLoading: state.getIn(['recommend', 'enterLoading'])
 });
