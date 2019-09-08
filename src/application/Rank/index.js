@@ -15,7 +15,6 @@ import { renderRoutes } from 'react-router-config';
 
 function Rank(props) {
   const { rankList:list, loading, songsCount } = props;
-
   const { getRankListDataDispatch } = props;
 
   let rankList = list ? list.toJS() : [];
@@ -27,13 +26,14 @@ function Rank(props) {
     // eslint-disable-next-line
   }, []);
 
-  const enterDetail = (name) => {
-      const idx = filterIdx(name);
-      if(idx === null) {
-        alert("暂无相关数据");
-        return;
-      } 
-      props.history.push(`/rank/${idx}`)
+  const enterDetail = (detail) => {
+    // const idx = filterIdx(name);
+    // console.log('iiiiiiii',idx);
+    // if(idx === null) {
+    //   alert("暂无相关数据");
+    //   return;
+    // } 
+    props.history.push(`/rank/${detail.id}`)
   }
   const renderSongList = (list) => {
     return list.length ? (
@@ -52,7 +52,7 @@ function Rank(props) {
        {
         list.map((item) => {
           return (
-            <ListItem key={item.coverImgId} tracks={item.tracks} onClick={() => enterDetail(item.name)}>
+            <ListItem key={item.coverImgId} tracks={item.tracks} onClick={() => enterDetail(item)}>
               <div className="img_wrapper">
                 <img src={item.coverImgUrl} alt=""/>
                 <div className="decorate"></div>

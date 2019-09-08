@@ -51,7 +51,7 @@ function Album(props) {
     if(pos.y < minScrollY) {
       headerDom.style.backgroundColor = style["theme-color"];
       headerDom.style.opacity = Math.min(1, (percent-1)/2);
-      setTitle(props.currentAlbum.name);
+      setTitle(currentAlbumJS&&currentAlbumJS.name);
       setIsMarquee(true);
     } else{
       headerDom.style.backgroundColor = "";
