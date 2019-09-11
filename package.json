@@ -13,6 +13,7 @@
     "react-router-config": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
+    "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0",
