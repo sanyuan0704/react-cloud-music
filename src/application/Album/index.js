@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { getAlbumList, changeEnterLoading } from './store/actionCreators';
 import Loading from '../../baseUI/loading/index';
 import SongsList from '../SongsList';
-
+import MusicNote from "../../baseUI/music-note/index";
 
 function Album(props) {
   const [showStatus, setShowStatus] = useState(true);
@@ -18,8 +18,9 @@ function Album(props) {
   const [isMarquee, setIsMarquee] = useState(false);//是否跑马灯
 
   const headerEl = useRef();
+  const musicNoteRef = useRef();
 
-  const { currentAlbum: currentAlbumImmutable, enterLoading } = props;
+  const { currentAlbum: currentAlbumImmutable, enterLoading, songsCount } = props;
   const { getAlbumDataDispatch } = props;
 
   const id = props.match.params.id;
@@ -52,6 +53,10 @@ function Album(props) {
     }
   }, [currentAlbum]);
 
+  const musicAnimation = (x, y) => {
+    musicNoteRef.current.startAnimation({ x, y });
+  };
+  
   const renderTopDesc = () => {
     return (
       <TopDesc background={currentAlbum.coverImgUrl}>
@@ -111,7 +116,7 @@ function Album(props) {
       unmountOnExit
       onExited={props.history.goBack}
     >
-      <Container>
+      <Container play={songsCount}>
         <Header ref={headerEl} title={title} handleClick={handleBack} isMarquee={isMarquee}></Header>
         {!isEmptyObject(currentAlbum) ?
           (
@@ -127,6 +132,7 @@ function Album(props) {
                   collectCount={currentAlbum.subscribedCount}
                   showCollect={true}
                   showBackground={true}
+                  musicAnimation={musicAnimation}
                 ></SongsList>
               </div>
             </Scroll>
@@ -134,6 +140,7 @@ function Album(props) {
           : null
         }
         { enterLoading ? <Loading></Loading> : null}
+        <MusicNote ref={musicNoteRef}></MusicNote>
       </Container>
     </CSSTransition>
   )
@@ -143,6 +150,7 @@ function Album(props) {
 const mapStateToProps = (state) => ({
   currentAlbum: state.getIn(['album', 'currentAlbum']),
   enterLoading: state.getIn(['album', 'enterLoading']),
+  songsCount: state.getIn(['player', 'playList']).size
 });
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
