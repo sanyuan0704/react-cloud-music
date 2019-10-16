@@ -7,7 +7,6 @@ const defaultState = fromJS({
   enterLoading: false,
   startIndex: 0,
   totalCount: 0,
-  scrollY: 0
 })
 
 export default (state = defaultState, action) => {
@@ -20,8 +19,6 @@ export default (state = defaultState, action) => {
       return state.set('enterLoading', action.data);
     case actionTypes.CHANGE_START_INDEX:
       return state.set('startIndex', action.data).set('pullUpLoading', false);
-    case actionTypes.CHANGE_SCROLL_Y:
-      return state.set('scrollY', action.data);
     default:
       return state;
   }

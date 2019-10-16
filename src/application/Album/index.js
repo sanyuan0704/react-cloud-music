@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Container } from "./style";
 import { CSSTransition } from "react-transition-group";
-import {withRouter} from 'react-router-dom';
 import Scroll from '../../baseUI/scroll/index';
 import style from "../../assets/global-style";
 import { connect } from 'react-redux';
-import { getAlbumList, changePullUpLoading, changeEnterLoading, changeScrollY } from './store/actionCreators';
+import { getAlbumList, changePullUpLoading, changeEnterLoading } from './store/actionCreators';
 import { EnterLoading } from './../Singers/style';
 import Loading from './../../baseUI/loading/index';
 import  Header  from './../../baseUI/header/index';
@@ -31,23 +30,14 @@ function Album(props) {
   let currentAlbumJS = currentAlbum.toJS();
 
   useEffect(() => {
-    // setShowStatus(true);
-    const pathName = props.history.location.pathname;
-    let urlStr = "";
-    if(/recommend/.test(pathName)) {
-      urlStr = "/recommend";
-    } else if(/rank/.test(pathName)) {
-      urlStr = "/rank";
-    }
-    getAlbumDataDispatch(id, urlStr);
-  }, [getAlbumDataDispatch, id, props.history.location.pathname]);
+    getAlbumDataDispatch(id);
+  }, [getAlbumDataDispatch, id]);
 
 
-  const handleScroll = (pos) => {
+  const handleScroll = useCallback((pos) => {
     let minScrollY = -HEADER_HEIGHT;
     let percent = Math.abs(pos.y/minScrollY);
     let headerDom = headerEl.current;
-    // props.changeScrollYDispatch(pos.);
     if(pos.y < minScrollY) {
       headerDom.style.backgroundColor = style["theme-color"];
       headerDom.style.opacity = Math.min(1, (percent-1)/2);
@@ -59,16 +49,16 @@ function Album(props) {
       setTitle("歌单");
       setIsMarquee(false);
     }
-  };
+  }, [currentAlbumJS]);
 
   const handlePullUp = () => {
     changePullUpLoadingStateDispatch(true);
     changePullUpLoadingStateDispatch(false);
   };
   
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     setShowStatus(false);
-  };
+  }, []);
 
   const musicAnimation = (x , y) => {
     musicNoteRef.current.startAnimation({x, y});
@@ -115,18 +105,15 @@ const mapStateToProps = (state) => ({
 // 映射dispatch到props上
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAlbumDataDispatch(id, fromURL) {
+    getAlbumDataDispatch(id) {
       dispatch(changeEnterLoading(true));
-      dispatch(getAlbumList(id, fromURL));
+      dispatch(getAlbumList(id));
     },
     changePullUpLoadingStateDispatch(state) {
       dispatch(changePullUpLoading(state));
-    },
-    changeScrollYDispatch(y) {
-      dispatch(changeScrollY(y));
     }
   }
 };
 
 // 将ui组件包装成容器组件
-export default connect(mapStateToProps, mapDispatchToProps)(React.memo(withRouter(Album)));
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Album));

@@ -146,7 +146,7 @@ function PlayList(props) {
       text = "随机播放";
     }
     return (
-      <div >
+      <div>
         <i className="iconfont" onClick={(e) => changeMode(e)}  dangerouslySetInnerHTML={{__html: content}}></i>
         <span className="text" onClick={(e) => changeMode(e)}>{text}</span>
       </div>

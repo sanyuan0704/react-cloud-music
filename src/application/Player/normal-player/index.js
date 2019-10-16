@@ -30,7 +30,6 @@ function NormalPlayer(props) {
     currentPlayingLyric,
     currentLyric
   } = props;
-
   const {
     changeMode,
     handlePrev,
@@ -40,13 +39,11 @@ function NormalPlayer(props) {
     toggleFullScreenDispatch,
     togglePlayListDispatch
   } = props;
-
   //处理transform的浏览器兼容问题
   const transform = prefixStyle("transform");
 
   const normalPlayerRef = useRef();
   const lyricScrollRef = useRef();
-  const cdImageRef = useRef();
 
   const lyricLineRefs = useRef([]);
   const cdWrapperRef = useRef();
@@ -56,7 +53,7 @@ function NormalPlayer(props) {
     if (!lyricScrollRef.current) return;
     let bScroll = lyricScrollRef.current.getBScroll();
     if (currentLineNum > 5) {
-      let lineEl = lyricLineRefs.current[currentLineNum - 5];
+      let lineEl = lyricLineRefs.current[currentLineNum - 5].current;
       bScroll.scrollToElement(lineEl, 1000);
     } else {
       bScroll.scrollTo(0, 0, 1000);
@@ -152,10 +149,6 @@ function NormalPlayer(props) {
     clickPlaying(e, !playing);
   }, [clickPlaying, playing]);
   
-  const pushLyricRefs = useCallback((el) => {
-    lyricLineRefs.current.push(el);
-  }, []);
-
   return (
     <CSSTransition
       classNames="normal"
@@ -181,8 +174,10 @@ function NormalPlayer(props) {
           <div className="back" onClick={() => toggleFullScreenDispatch(false)}>
             <i className="iconfont icon-back">&#xe662;</i>
           </div>
-          <h1 className="title">{song.name}</h1>
-          <h1 className="subtitle">{getName(song.ar)}</h1>
+          <div className="text">
+            <h1 className="title">{song.name}</h1>
+            <h1 className="subtitle">{getName(song.ar)}</h1>
+          </div>
         </Top>
         <Middle ref={cdWrapperRef} onClick={toggleCurrentState}>
           <CSSTransition
@@ -195,15 +190,17 @@ function NormalPlayer(props) {
                 visibility:
                   currentState.current !== "lyric" ? "visible" : "hidden"
               }}
+              playing={playing}
             >
+              <div className={`needle ${playing? '' : 'pause'}`}></div>
               <div className="cd">
                 <img
-                  ref={cdImageRef}
-                  className={`image play ${playing ? "" : "pause"}`}
+                  className={`image play ${playing? '' : 'pause'}`}
                   src={song.al.picUrl + "?param=400x400"}
                   alt=""
                 />
               </div>
+              {/* <CD playing={playing} image={song.al.picUrl + "?param=300x300"}></CD> */}
               <p className="playing_lyric">{currentPlayingLyric}</p>
             </CDWrapper>
           </CSSTransition>
@@ -221,21 +218,23 @@ function NormalPlayer(props) {
                   }}
                   className="lyric_wrapper"
                 >
-                  {currentLyric
-                    ? currentLyric.lines.map((item, index) => {
-                        return (
-                          <p
-                            className={`text ${
-                              currentLineNum === index ? "current" : ""
-                            }`}
-                            key={item + index}
-                            ref={pushLyricRefs}
-                          >
-                            {item.txt}
-                          </p>
-                        );
-                      })
-                    : null}
+                  {
+                    currentLyric
+                      ? currentLyric.lines.map((item, index) => {
+                      lyricLineRefs.current[index] = React.createRef();
+                      return (
+                        <p
+                          className={`text ${
+                            currentLineNum === index ? "current" : ""
+                          }`}
+                          key={item + index}
+                          ref={lyricLineRefs.current[index]}
+                        >
+                          {item.txt}
+                        </p>
+                      );
+                    })
+                  : <p className="text pure">纯音乐，请欣赏。</p>}
                 </LyricWrapper>
               </Scroll>
             </LyricContainer>

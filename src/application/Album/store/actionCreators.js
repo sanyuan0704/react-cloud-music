@@ -1,5 +1,5 @@
-import { CHANGE_CURRENT_ALBUM, CHANGE_TOTAL_COUNT, CHANGE_PULLUP_LOADING, CHANGE_START_INDEX, CHANGE_ENTER_LOADING, CHANGE_SCROLL_Y } from './constants';
-import { getRecommendListDetailRequest, getRankListDetailRequest } from '../../../api/request';
+import { CHANGE_CURRENT_ALBUM, CHANGE_TOTAL_COUNT, CHANGE_PULLUP_LOADING, CHANGE_START_INDEX, CHANGE_ENTER_LOADING } from './constants';
+import { getAlbumDetailRequest } from '../../../api/request';
 import { fromJS } from 'immutable';
 
 const changeCurrentAlbum = (data) => ({
@@ -26,26 +26,9 @@ export const changeStartIndex = (data) => ({
   data
 });
 
-export const changeScrollY = (data) => ({
-  type: CHANGE_SCROLL_Y,
-  data
-});
-
-
-export const getAlbumList = (id, fromURL) => {
-  let request;
-  switch (fromURL) {
-    case "/recommend":
-      request = getRecommendListDetailRequest;
-      break;
-    case "/rank":
-      request = getRankListDetailRequest;
-      break;
-    default:
-      request = getRecommendListDetailRequest;
-  }
+export const getAlbumList = (id) => {
   return dispatch => {
-    request(id).then(res => {
+    getAlbumDetailRequest(id).then(res => {
       let data = res.playlist;
       dispatch(changeCurrentAlbum(data));
       dispatch(changeEnterLoading(false));

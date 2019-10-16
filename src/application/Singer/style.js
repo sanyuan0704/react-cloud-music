@@ -63,13 +63,13 @@ export const CollectButton = styled.div`
   font-size: 0;
   line-height: 40px;
   .iconfont{
-    display: inline-block
+    display: inline-block;
     margin-right: 10px;
     font-size: 12px;
     vertical-align: 1px;
   }
   .text {
-    display: inline-block
+    display: inline-block;
     font-size:14px;
     letter-spacing: 5px;
   }

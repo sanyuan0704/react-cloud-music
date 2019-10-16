@@ -17,6 +17,14 @@ const noWrap = () => {
   `;
 };
 
+const bgFull = () => {
+  return `
+    background-position: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+  `
+};
+
 export default {
   "theme-color": "#d44439",
   "theme-color-shadow": "rgba(212, 68, 57, .5)",
@@ -29,10 +37,12 @@ export default {
   "font-size-l": "16px",
   "font-size-ll": "18px",
   "border-color": "#e4e4e4",
+  "border-color-v2": "rgba(228, 228, 228, 0.1)",
   "background-color": "#f2f3f4",
   "background-color-shadow": "rgba(0, 0, 0, 0.3)",
   "highlight-background-color": "#fff",
   "official-red": "#E82001",
   extendClick,
-  noWrap
+  noWrap,
+  bgFull
 };

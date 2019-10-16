@@ -32,7 +32,7 @@ function Player(props) {
     currentIndex,
     playList:immutablePlayList,
     mode,
-    sequencePlayList,
+    sequencePlayList: immutableSequencePlayList,
     fullScreen
   } = props;
 
@@ -47,6 +47,7 @@ function Player(props) {
   } = props;
 
   const playList = immutablePlayList.toJS();
+  const sequencePlayList = immutableSequencePlayList.toJS();
   const currentSong = immutableCurrentSong.toJS();
 
   const [preSong, setPreSong] = useState({});
@@ -57,33 +58,31 @@ function Player(props) {
   const currentLyric = useRef();
   const currentLineNum = useRef(0);
   const songReady = useRef(true);
-
+ 
   useEffect(() => {
     if (
       !playList.length ||
       currentIndex === -1 ||
       !playList[currentIndex] ||
-      playList[currentIndex].id === preSong.id
+      playList[currentIndex].id === preSong.id ||
+      !songReady.current
     )
-      return;
-    if (!songReady.current) {
-      alert("操作过快！");
-      return;
-    }
+    return;
     songReady.current = false;
     let current = playList[currentIndex];
     changeCurrentDispatch(current);
     setPreSong(current);
+    setPlayingLyric("");
     audioRef.current.src = getSongUrl(current.id);
-    setTimeout(() => {
-      songReady.current = true;
-    }, 1000);
+    audioRef.current.autoplay = true;
     togglePlayingDispatch(true);
     getLyric(current.id);
     setCurrentTime(0);
     setDuration((current.dt / 1000) | 0);
     // eslint-disable-next-line
   }, [currentIndex, playList]);
+ 
+ 
 
   useEffect(() => {
     playing ? audioRef.current.play() : audioRef.current.pause();
@@ -91,7 +90,7 @@ function Player(props) {
 
   useEffect(() => {
     if (!fullScreen) return;
-    if (currentLineNum.current && currentLyric.current.lines.length) {
+    if (currentLyric.current && currentLyric.current.lines.length) {
       handleLyric({
         lineNum: currentLineNum.current,
         txt: currentLyric.current.lines[currentLineNum.current].txt
@@ -100,6 +99,7 @@ function Player(props) {
   }, [fullScreen]);
 
   const handleLyric = ({ lineNum, txt }) => {
+    if(!currentLyric.current)return;
     currentLineNum.current = lineNum;
     setPlayingLyric(txt);
   };
@@ -109,17 +109,25 @@ function Player(props) {
     if (currentLyric.current) {
       currentLyric.current.stop();
     }
+    // 避免songReady恒为false的情况
+    setTimeout(() => {
+      songReady.current = true;
+    }, 3000);
     getLyricRequest(id)
       .then(data => {
-        if (!data.lrc) return;
         lyric = data.lrc.lyric;
-        audioRef.current.play();
+        if(!lyric) {
+          currentLyric.current = null;
+          return;
+        }
         currentLyric.current = new Lyric(lyric, handleLyric);
+        console.log(currentLyric.current)
         currentLyric.current.play();
         currentLineNum.current = 0;
         currentLyric.current.seek(0);
       })
       .catch(() => {
+        songReady.current = true;
         audioRef.current.play();
       });
   };
@@ -127,7 +135,9 @@ function Player(props) {
   const clickPlaying = (e, state) => {
     e.stopPropagation();
     togglePlayingDispatch(state);
-    currentLyric.current.togglePlay();
+    if(currentLyric.current) {
+      currentLyric.current.togglePlay();
+    }
   };
 
   const onProgressChange = curPercent => {
@@ -209,8 +219,11 @@ function Player(props) {
     toastRef.current.show();
   };
   const handleError = () => {
+    songReady.current = true;
+    handleNext();
     alert("播放出错");
   };
+
   return (
     <div>
       {isEmptyObject(currentSong) ? null : (
