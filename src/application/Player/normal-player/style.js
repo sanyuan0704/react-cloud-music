@@ -129,9 +129,7 @@ export const CDWrapper = styled.div`
   margin: auto;
   left: 0;
   right: 0;
-  width: 80%;
   box-sizing: border-box;
-  height: 80vw;
   .needle{
     position: absolute;
     top: -6.67vw;
@@ -151,8 +149,8 @@ export const CDWrapper = styled.div`
   .cd {
     top: 16%;
     position: absolute;
-    width: 80%;
-    height: 80vw;
+    width: 70%;
+    height: 70vw;
     background-image: url(${disc});
     border: 4px solid ${style["border-color-v2"]};
     border-radius: 50%;
@@ -175,7 +173,7 @@ export const CDWrapper = styled.div`
   }
   .playing_lyric {
     position: absolute;
-    top: 105vw;
+    top: 95vw;
     font-size: 14px;
     line-height: 20px;
     white-space: normal;
@@ -274,3 +272,33 @@ export const Operators = styled.div`
     color: ${style["theme-color"]};
   }
 `;
+
+export const List = styled.div`
+  width: 70%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  justify-content: space-around;
+  overflow: hidden;
+  >span:first-of-type{
+    display: block;
+    flex: 0 0 auto;
+    padding: 5px 0;
+    color: ${style["font-color-desc-v2"]};
+    font-size: ${style["font-size-m"]};
+    vertical-align: middle;
+  }
+`
+export const ListItem = styled.span`
+  flex: 0 0 auto;
+  font-size: ${style["font-size-m"]};
+  padding: 5px 5px;
+  border-radius: 10px;
+  color: ${style["font-color-desc-v2"]};
+  &.selected{
+    color: ${style["theme-color"]};
+    border: 1px solid ${style["theme-color"]};
+    opacity: 0.8;
+  }
+`

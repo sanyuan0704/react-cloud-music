@@ -11,7 +11,8 @@ const defaultState = fromJS({
   mode: playMode.sequence,
   currentIndex: -1,
   showPlayList: false,
-  currentSong: {}
+  currentSong: {},
+  speed: 1
 });
 
 const handleInsertSong = (state, song) => {
@@ -95,6 +96,8 @@ export default (state = defaultState, action) => {
       return handleInsertSong(state, action.data);
     case actionTypes.DELETE_SONG:
       return handleDeleteSong(state, action.data);
+    case actionTypes.CHANGE_SPEED:
+      return state.set('speed', action.data);
     default:
       return state;
   }

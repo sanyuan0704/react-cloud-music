@@ -3,7 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import animations from "create-keyframe-animation";
 import ProgressBar from "../../../baseUI/progress-bar/index";
 import Scroll from "../../../baseUI/scroll/index";
-import { playMode } from "../../../api/config";
+import { playMode, list } from "../../../api/config";
 import { prefixStyle, formatPlayTime, getName } from "../../../api/utils";
 import {
   NormalPlayerContainer,
@@ -14,7 +14,9 @@ import {
   Operators,
   CDWrapper,
   LyricContainer,
-  LyricWrapper
+  LyricWrapper,
+  List,
+  ListItem
 } from "./style";
 
 function NormalPlayer(props) {
@@ -28,7 +30,8 @@ function NormalPlayer(props) {
     duration,
     currentLineNum,
     currentPlayingLyric,
-    currentLyric
+    currentLyric,
+    speed
   } = props;
   const {
     changeMode,
@@ -37,7 +40,8 @@ function NormalPlayer(props) {
     onProgressChange,
     clickPlaying,
     toggleFullScreenDispatch,
-    togglePlayListDispatch
+    togglePlayListDispatch,
+    clickSpeed
   } = props;
   //处理transform的浏览器兼容问题
   const transform = prefixStyle("transform");
@@ -148,7 +152,7 @@ function NormalPlayer(props) {
   const clickPlayingCB = useCallback((e) => {
     clickPlaying(e, !playing);
   }, [clickPlaying, playing]);
-  
+
   return (
     <CSSTransition
       classNames="normal"
@@ -241,6 +245,21 @@ function NormalPlayer(props) {
           </CSSTransition>
         </Middle>
         <Bottom className="bottom">
+          <List>
+            <span>倍速听歌</span>
+            {
+              list.map((item) => {
+                return (
+                  <ListItem 
+                    key={item.key}
+                    className={`${speed === item.key ? 'selected': ''}`} 
+                    onClick={() => clickSpeed(item.key)}>
+                      {item.name}
+                  </ListItem>
+                )
+              })
+            }
+          </List>
           <ProgressWrapper>
             <span className="time time-l">{formatPlayTime(currentTime)}</span>
             <div className="progress-bar-wrapper">

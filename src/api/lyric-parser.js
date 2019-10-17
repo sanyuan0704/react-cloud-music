@@ -24,13 +24,14 @@ function noop() {
 }
 
 export default class Lyric {
-  constructor(lrc, hanlder = noop) {
+  constructor(lrc, hanlder = noop, speed = 1) {
     this.lrc = lrc
     this.tags = {}
     this.lines = []
     this.handler = hanlder
     this.state = STATE_PAUSE
     this.curLine = 0
+    this.speed = speed
 
     this._init()
   }
@@ -91,19 +92,29 @@ export default class Lyric {
     })
   }
 
-  _playRest() {
+  _playRest(isSeek=false) {
+    let delay;
     let line = this.lines[this.curNum]
-    let delay = line.time - (+new Date() - this.startStamp)
-
+    if(isSeek) {
+      delay = line.time - (+new Date() - this.startStamp);
+    }else {
+      //拿到上一行的歌词开始时间，算间隔
+      let preTime = this.lines[this.curNum - 1] ? this.lines[this.curNum - 1].time : 0;
+      delay = line.time - preTime;
+    }
     this.timer = setTimeout(() => {
       this._callHandler(this.curNum++)
       if (this.curNum < this.lines.length && this.state === STATE_PLAYING) {
         this._playRest()
       }
-    }, delay)
+    }, (delay / this.speed))
   }
 
-  play(startTime = 0) {
+  changeSpeed(speed) {
+    this.speed = speed;
+  }
+
+  play(startTime = 0, isSeek = false) {
     if (!this.lines.length) {
       return
     }
@@ -116,7 +127,7 @@ export default class Lyric {
 
     if (this.curNum < this.lines.length) {
       clearTimeout(this.timer)
-      this._playRest()
+      this._playRest(isSeek)
     }
   }
 
@@ -138,6 +149,6 @@ export default class Lyric {
   }
 
   seek(offset) {
-    this.play(offset)
+    this.play(offset, true)
   }
 }

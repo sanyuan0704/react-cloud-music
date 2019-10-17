@@ -9,12 +9,12 @@ const List = styled.div`
   display: flex;
   align-items: center;
   height: 30px;
+  justify-content: center;
   overflow: hidden;
   >span:first-of-type{
     display: block;
     flex: 0 0 auto;
     padding: 5px 0;
-    margin-right: 5px;
     color: grey;
     font-size: ${style["font-size-m"]};
     vertical-align: middle;
@@ -23,7 +23,7 @@ const List = styled.div`
 const ListItem = styled.span`
   flex: 0 0 auto;
   font-size: ${style["font-size-m"]};
-  padding: 5px 8px;
+  padding: 5px 5px;
   border-radius: 10px;
   &.selected{
     color: ${style["theme-color"]};
@@ -45,6 +45,7 @@ function Horizen(props) {
     Array.from(tagElems).forEach(ele => {
       totalWidth += ele.offsetWidth;
     });
+    totalWidth += 2;
     categoryDOM.style.width = `${totalWidth}px`;
     setRefreshCategoryScroll(true);
   }, [refreshCategoryScroll]);
@@ -54,7 +55,7 @@ function Horizen(props) {
   }
   return ( 
     <Scroll direction={"horizental"} refresh={true}>
-      <div  ref={Category} >
+      <div ref={Category} >
         <List>
           <span>{title}</span>
           {

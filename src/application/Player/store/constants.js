@@ -8,3 +8,4 @@ export const SET_CURRENT_INDEX = 'player/SET_CURRENT_INDEX';
 export const SET_SHOW_PLAYLIST = 'player/SET_SHOW_PLAYLIST';
 export const INSERT_SONG = 'player/INSERT_SONG';
 export const DELETE_SONG = 'player/DELETE_SONG';
+export const CHANGE_SPEED = 'player/CHANGE_SPEED';

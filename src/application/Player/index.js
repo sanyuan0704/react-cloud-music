@@ -7,7 +7,8 @@ import {
   changeCurrentSong,
   changePlayList,
   changePlayMode,
-  changeFullScreen
+  changeFullScreen,
+  changeSpeed
 } from "./store/actionCreators";
 import { isEmptyObject, shuffle, findIndex, getSongUrl } from "../../api/utils";
 import PlayList from "./play-list/index";
@@ -27,6 +28,7 @@ function Player(props) {
   let percent = isNaN(currentTime / duration) ? 0 : currentTime / duration;
 
   const {
+    speed,
     playing,
     currentSong:immutableCurrentSong,
     currentIndex,
@@ -43,7 +45,8 @@ function Player(props) {
     changeCurrentDispatch,
     changePlayListDispatch,
     changeModeDispatch,
-    toggleFullScreenDispatch
+    toggleFullScreenDispatch,
+    changeSpeedDispatch
   } = props;
 
   const playList = immutablePlayList.toJS();
@@ -75,6 +78,7 @@ function Player(props) {
     setPlayingLyric("");
     audioRef.current.src = getSongUrl(current.id);
     audioRef.current.autoplay = true;
+    audioRef.current.playbackRate = speed;
     togglePlayingDispatch(true);
     getLyric(current.id);
     setCurrentTime(0);
@@ -120,8 +124,7 @@ function Player(props) {
           currentLyric.current = null;
           return;
         }
-        currentLyric.current = new Lyric(lyric, handleLyric);
-        console.log(currentLyric.current)
+        currentLyric.current = new Lyric(lyric, handleLyric, speed);
         currentLyric.current.play();
         currentLineNum.current = 0;
         currentLyric.current.seek(0);
@@ -224,6 +227,13 @@ function Player(props) {
     alert("播放出错");
   };
 
+  const clickSpeed = (newSpeed) => {
+    changeSpeedDispatch(newSpeed);
+    audioRef.current.playbackRate = newSpeed;
+    currentLyric.current.changeSpeed(newSpeed);
+    currentLyric.current.seek(currentTime*1000);
+  }
+
   return (
     <div>
       {isEmptyObject(currentSong) ? null : (
@@ -238,6 +248,7 @@ function Player(props) {
           currentTime={currentTime}
           currentLyric={currentLyric.current}
           currentPlayingLyric={currentPlayingLyric}
+          speed={speed}
           changeMode={changeMode}
           handlePrev={handlePrev}
           handleNext={handleNext}
@@ -246,6 +257,7 @@ function Player(props) {
           clickPlaying={clickPlaying}
           toggleFullScreenDispatch={toggleFullScreenDispatch}
           togglePlayListDispatch={togglePlayListDispatch}
+          clickSpeed={clickSpeed}
         ></NormalPlayer>
       )}
       {isEmptyObject(currentSong) ? null : (
@@ -279,6 +291,7 @@ const mapStateToProps = state => ({
   currentSong: state.getIn(["player", "currentSong"]),
   showPlayList: state.getIn(["player", "showPlayList"]),
   mode: state.getIn(["player", "mode"]),
+  speed: state.getIn(["player", "speed"]),
   currentIndex: state.getIn(["player", "currentIndex"]),
   playList: state.getIn(["player", "playList"]),
   sequencePlayList: state.getIn(["player", "sequencePlayList"])
@@ -307,6 +320,9 @@ const mapDispatchToProps = dispatch => {
     },
     changePlayListDispatch(data) {
       dispatch(changePlayList(data));
+    },
+    changeSpeedDispatch(data) {
+      dispatch(changeSpeed(data));
     }
   };
 };

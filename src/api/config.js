@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseUrl = "http://47.105.150.105/m-api";
+export const baseUrl = "http://localhost:3300";
 
 // axios的实例及拦截器配置
 const axiosInstance = axios.create({
@@ -228,3 +228,27 @@ export const playMode = {
   loop: 1,
   random: 2
 };
+
+// 倍速播放配置
+export const list = [
+  {
+    key: 0.75,
+    name: "x0.75"
+  },
+  {
+    key: 1,
+    name:"x1"
+  }, 
+  {
+    key: 1.25,
+    name:"x1.25"
+  }, 
+  {
+    key: 1.5,
+    name:"x1.5"
+  }, 
+  {
+    key: 2,
+    name:"x2"
+  }
+]
