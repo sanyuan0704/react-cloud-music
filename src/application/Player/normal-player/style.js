@@ -176,6 +176,7 @@ export const CDWrapper = styled.div`
   .playing_lyric {
     position: absolute;
     top: 105vw;
+    width: 100%;
     font-size: 14px;
     line-height: 20px;
     white-space: normal;
