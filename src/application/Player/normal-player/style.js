@@ -124,11 +124,13 @@ export const Middle = styled.div`
   }
 `;
 export const CDWrapper = styled.div`
+  margin: auto;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
-  margin: auto;
-  left: 0;
-  right: 0;
   box-sizing: border-box;
   .needle{
     position: absolute;
@@ -173,6 +175,8 @@ export const CDWrapper = styled.div`
   }
   .playing_lyric {
     position: absolute;
+    margin: auto;
+    width: 80%;
     top: 95vw;
     font-size: 14px;
     line-height: 20px;
