@@ -30,8 +30,9 @@ export default class Lyric {
     this.lines = []
     this.handler = hanlder
     this.state = STATE_PAUSE
-    this.curLine = 0
+    this.curLineIndex = 0
     this.speed = speed
+    this.offset = 0
 
     this._init()
   }
@@ -71,9 +72,10 @@ export default class Lyric {
     this.lines.sort((a, b) => {
       return a.time - b.time
     })
+    console.log(this.lines);
   }
 
-  _findCurNum(time) {
+  _findcurLineIndex(time) {
     for (let i = 0; i < this.lines.length; i++) {
       if (time <= this.lines[i].time) {
         return i
@@ -93,18 +95,18 @@ export default class Lyric {
   }
 
   _playRest(isSeek=false) {
+    let line = this.lines[this.curLineIndex]
     let delay;
-    let line = this.lines[this.curNum]
     if(isSeek) {
       delay = line.time - (+new Date() - this.startStamp);
     }else {
       //拿到上一行的歌词开始时间，算间隔
-      let preTime = this.lines[this.curNum - 1] ? this.lines[this.curNum - 1].time : 0;
+      let preTime = this.lines[this.curLineIndex - 1] ? this.lines[this.curLineIndex - 1].time : 0;
       delay = line.time - preTime;
     }
     this.timer = setTimeout(() => {
-      this._callHandler(this.curNum++)
-      if (this.curNum < this.lines.length && this.state === STATE_PLAYING) {
+      this._callHandler(this.curLineIndex++)
+      if (this.curLineIndex < this.lines.length && this.state === STATE_PLAYING) {
         this._playRest()
       }
     }, (delay / this.speed))
@@ -114,37 +116,37 @@ export default class Lyric {
     this.speed = speed;
   }
 
-  play(startTime = 0, isSeek = false) {
+  play(offset = 0, isSeek = false) {
     if (!this.lines.length) {
       return
     }
     this.state = STATE_PLAYING
 
-    this.curNum = this._findCurNum(startTime)
-    //现在正处于第this.curNum-1行
-    this._callHandler(this.curNum-1);
-    this.startStamp = +new Date() - startTime
+    this.curLineIndex = this._findcurLineIndex(offset)
+    //现在正处于第this.curLineIndex-1行
+    this._callHandler(this.curLineIndex-1)
+    this.offset = offset
+    this.startStamp = +new Date() - offset
 
-    if (this.curNum < this.lines.length) {
+    if (this.curLineIndex < this.lines.length) {
       clearTimeout(this.timer)
       this._playRest(isSeek)
     }
   }
 
-  togglePlay() {
-    var now = +new Date()
+  togglePlay(offset) {
     if (this.state === STATE_PLAYING) {
       this.stop()
-      this.pauseStamp = now
+      this.offset = offset
     } else {
       this.state = STATE_PLAYING
-      this.play((this.pauseStamp || now) - (this.startStamp || now), true)
-      this.pauseStamp = 0
+      this.play(offset, true)
     }
   }
 
   stop() {
     this.state = STATE_PAUSE
+    this.offset = 0
     clearTimeout(this.timer)
   }
 

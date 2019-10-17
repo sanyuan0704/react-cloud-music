@@ -139,7 +139,7 @@ function Player(props) {
     e.stopPropagation();
     togglePlayingDispatch(state);
     if(currentLyric.current) {
-      currentLyric.current.togglePlay();
+      currentLyric.current.togglePlay(currentTime*1000);
     }
   };
 
