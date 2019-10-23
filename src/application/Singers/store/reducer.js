@@ -8,7 +8,7 @@ const defaultState = fromJS({
   enterLoading: true,
   pullUpLoading: false,
   pullDownLoading: false,
-  pageCount: 0
+  listOffset: 0, // 请求列表的偏移不是page，是个数
 })
 
 export default (state = defaultState, action) => {
@@ -19,8 +19,8 @@ export default (state = defaultState, action) => {
       return state.set('category', action.data);
     case actionTypes.CHANGE_SINGER_LIST:
       return state.set('singerList', action.data);
-    case actionTypes.CHANGE_PAGE_COUNT:
-      return state.set('pageCount', action.data);
+    case actionTypes.CHANGE_LIST_OFFSET:
+      return state.set('listOffset', action.data);
     case actionTypes.CHANGE_ENTER_LOADING:
       return state.set('enterLoading', action.data);
     case actionTypes.CHANGE_PULLUP_LOADING:
