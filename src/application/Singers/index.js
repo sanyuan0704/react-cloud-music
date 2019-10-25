@@ -9,7 +9,7 @@ import {
   EnterLoading
 } from "./style";
 import { connect } from 'react-redux';
-import { getSingerList, changeCategory, changeAlpha, getHotSingerList, changeEnterLoading, changePageCount, refreshMoreSingerList, changePullUpLoading,changePullDownLoading, refreshMoreHotSingerList } from './store/actionCreators';
+import { getSingerList, changeCategory, changeAlpha, getHotSingerList, changeEnterLoading, changeListOffset, refreshMoreSingerList, changePullUpLoading,changePullDownLoading, refreshMoreHotSingerList } from './store/actionCreators';
 import Scroll from "../../baseUI/scroll/index";
 import  LazyLoad, {forceCheck} from 'react-lazyload';
 import Loading from '../../baseUI/loading/index';
@@ -117,20 +117,19 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateCategory(newVal) {
       dispatch(changeCategory(newVal));
-      dispatch(changePageCount(0));
+      dispatch(changeListOffset(0));
       dispatch(changeEnterLoading(true));
       dispatch(getSingerList());
     },
     updateAlpha(newVal) {
       dispatch(changeAlpha(newVal));
-      dispatch(changePageCount(0));
+      dispatch(changeListOffset(0));
       dispatch(changeEnterLoading(true));
       dispatch(getSingerList());
     },
     // 滑到最底部刷新部分的处理
     pullUpRefresh(hot, count) {
       dispatch(changePullUpLoading(true));
-      dispatch(changePageCount(count+1));
       if(hot){
         dispatch(refreshMoreHotSingerList());
       } else {
@@ -140,7 +139,7 @@ const mapDispatchToProps = (dispatch) => {
     //顶部下拉刷新
     pullDownRefresh(category, alpha) {
       dispatch(changePullDownLoading(true));
-      dispatch(changePageCount(0));
+      dispatch(changeListOffset(0));
       if(category === '' && alpha === ''){
         dispatch(getHotSingerList());
       } else {
