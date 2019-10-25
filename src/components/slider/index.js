@@ -11,8 +11,10 @@ function Slider(props) {
     if(bannerList.length && !sliderSwiper){
         let sliderSwiper = new Swiper(".slider-container", {
           loop: true,
-          autoplay: true,
-          autoplayDisableOnInteraction: false,
+          autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+          },
           pagination: {el:'.swiper-pagination'},
         });
         setSliderSwiper(sliderSwiper);
