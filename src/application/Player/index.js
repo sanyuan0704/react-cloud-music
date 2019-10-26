@@ -85,8 +85,6 @@ function Player(props) {
     setDuration((current.dt / 1000) | 0);
     // eslint-disable-next-line
   }, [currentIndex, playList]);
- 
- 
 
   useEffect(() => {
     playing ? audioRef.current.play() : audioRef.current.pause();

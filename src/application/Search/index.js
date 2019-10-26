@@ -39,7 +39,7 @@ const Search = (props) => {
 
   useEffect(() => {
     setShow(true);
-    if(!hotList.length)
+    if(!hotList.size)
       getHotKeyWordsDispatch();
       // eslint-disable-next-line
   }, []);
@@ -200,9 +200,9 @@ const Search = (props) => {
         <ShortcutWrapper show={query}>
           <Scroll onScorll={forceCheck}>
             <div>
-              {renderSingers()}
-              {renderAlbum()}
-              {renderSongs()}
+              { renderSingers() }
+              { renderAlbum() }
+              { renderSongs() }
             </div>
           </Scroll>
         </ShortcutWrapper>
