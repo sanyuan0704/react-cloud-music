@@ -27,12 +27,12 @@ function Player(props) {
   const [currentPlayingLyric, setPlayingLyric] = useState("");
   const [preSong, setPreSong] = useState({});
   const [modeText, setModeText] = useState("");
-  const [songReady, setSongReady] = useState(true);
 
   const audioRef = useRef();
   const toastRef = useRef();
   const currentLyric = useRef();
   const currentLineNum = useRef(0);
+  const songReady = useRef(true);
 
   const {
     playing,
@@ -64,17 +64,17 @@ function Player(props) {
       currentIndex === -1 ||
       !playList[currentIndex] ||
       playList[currentIndex].id === preSong.id ||
-      !songReady
+      !songReady.current
     )
       return;
     let current = playList[currentIndex];
     setPreSong(current);
-    setSongReady(false);
+    songReady.current = false;
     changeCurrentDispatch(current);//赋值currentSong
     audioRef.current.src = getSongUrl(current.id);
     setTimeout(() => {
       audioRef.current.play().then(() => {
-        setSongReady(true);
+        songReady.current = true;
       });
     });
     togglePlayingDispatch(true);//播放状态
@@ -100,22 +100,26 @@ function Player(props) {
       currentLyric.current.stop();
     }
     // 避免songReady恒为false的情况
+    setTimeout(() => {
+      songReady.current = true;
+    }, 3000);
     getLyricRequest(id)
-      .then(data => {
-        lyric = data.lrc.lyric;
-        if(!lyric) {
-          currentLyric.current = null;
-          return;
-        }
-        currentLyric.current = new Lyric(lyric, handleLyric);
-        currentLyric.current.play();
-        currentLineNum.current = 0;
-        currentLyric.current.seek(0);
-      })
-      .catch(() => {
-        songReady.current = true;
-        audioRef.current.play();
-      });
+    .then(data => {
+      lyric = data.lrc.lyric;
+
+      if(!lyric) {
+        currentLyric.current = null;
+        return;
+      }
+      currentLyric.current = new Lyric(lyric, handleLyric);
+      currentLyric.current.play();
+      currentLineNum.current = 0;
+      currentLyric.current.seek(0);
+    })
+    .catch(() => {
+      songReady.current = true;
+      audioRef.current.play();
+    });
   };
 
   const clickPlaying = (e, state) => {
@@ -203,6 +207,10 @@ function Player(props) {
       handleNext();
     }
   };
+  const handleError = () => {
+    alert("播放出错");
+    handleNext();
+  }
   return (
     <div>
       { isEmptyObject(currentSong) ? null : (
@@ -245,6 +253,7 @@ function Player(props) {
         ref={audioRef}
         onTimeUpdate={updateTime}
         onEnded={handleEnd}
+        onError={handleError}
       ></audio>
       <PlayList></PlayList>
       <Toast text={modeText} ref={toastRef}></Toast>  

@@ -15,7 +15,7 @@ export const NormalPlayerContainer = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 150;
+  z-index: 1000;
   background: ${style["background-color"]};
   &.normal-enter,
   &.normal-exit-done {

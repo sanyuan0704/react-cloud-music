@@ -7,3 +7,4 @@ export const SET_PLAY_MODE = 'player/SET_PLAY_MODE';
 export const SET_CURRENT_INDEX = 'player/SET_CURRENT_INDEX';
 export const SET_SHOW_PLAYLIST = 'player/SET_SHOW_PLAYLIST';
 export const DELETE_SONG = 'player/DELETE_SONG';
+export const INSERT_SONG = 'player/INSERT_SONG';
