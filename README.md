@@ -2,7 +2,7 @@
 
 [在线体验地址](http://47.98.159.95:8010)
 
-从开发到拆解教程，前端万粉博主——神三元全程亲自操刀，项目代码质量、可维护性均有保证。
+从开发到拆解教程，前端万粉博主——神三元([掘金](https://juejin.im/user/5c45ddf06fb9a04a006f5491)|[知乎](https://www.zhihu.com/people/yang-xing-yuan-9/activities))全程亲自操刀，项目代码质量、可维护性均有保证。
 
 系列拆解文章已经出炉，整理成了电子书，请点[这里](https://sanyuan0704.github.io/react-cloud-music/)查看。如遇到问题，或者需要联系加群，请加微信: `FESanyuan`。
 
