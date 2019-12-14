@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>为什么做这个项目? | React打造精美WebApp</title>
+    <meta name="description" content="采用React Hooks + Redux + immutable.js打造完整前端工作流，进阶前端综合能力">
+    
+    
+    <link rel="preload" href="/react-cloud-music/assets/css/0.styles.bfbe80ea.css" as="style"><link rel="preload" href="/react-cloud-music/assets/js/app.f939f1d0.js" as="script"><link rel="preload" href="/react-cloud-music/assets/js/2.db64d5ce.js" as="script"><link rel="preload" href="/react-cloud-music/assets/js/8.18307267.js" as="script"><link rel="prefetch" href="/react-cloud-music/assets/js/3.f48b7bc9.js"><link rel="prefetch" href="/react-cloud-music/assets/js/4.2f35b444.js"><link rel="prefetch" href="/react-cloud-music/assets/js/5.baf4d0ac.js"><link rel="prefetch" href="/react-cloud-music/assets/js/6.c863e201.js"><link rel="prefetch" href="/react-cloud-music/assets/js/7.0f4b7fee.js"><link rel="prefetch" href="/react-cloud-music/assets/js/9.39c97814.js">
+    <link rel="stylesheet" href="/react-cloud-music/assets/css/0.styles.bfbe80ea.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/react-cloud-music/" class="home-link router-link-active"><!----> <span class="site-name">React打造精美WebApp</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="https://github.com/sanyuan0704/react-cloud-music" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub地址
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://juejin.im/user/5c45ddf06fb9a04a006f5491" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  掘金
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="https://github.com/sanyuan0704/react-cloud-music" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub地址
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="https://juejin.im/user/5c45ddf06fb9a04a006f5491" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  掘金
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>项目说明</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/react-cloud-music/chapter1/" class="sidebar-link">说明</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="为什么做这个项目"><a href="#为什么做这个项目" aria-hidden="true" class="header-anchor">#</a> 为什么做这个项目?</h2> <p>可能有很多人已经知道了这个开源项目，首先说一说为什么要做这样一个开源项目:</p> <ul><li><p>1、后端接口和文档完整，大家都知道开发一个产品绝不仅仅是前端一个人的活，需要花大量的时间和后端沟通，商讨数据接口的形式，最终做成文档并以此为依据开发。而现在github已经有非常成熟的抓取网易云音乐服务端的接口，不仅在与时俱进地不断更新接口，而且文档写的也非常完善，用这样的真实数据接口可以大大方便我们进行前端的开发，大大降低了我们开发前端的成本。</p></li> <li><p>2、React Hooks如今可谓前端界&quot;当红小生&quot;, 因其API简洁性、逻辑复用性等特性逐渐被开发者所应用，未来的vue3.0也是采用类似的Function Based的模式，因此学习React Hooks也是未来的大趋势，通过一个具体的项目来实践、应用hooks特性，我觉得比干啃文档要强太多，并且在实践的过程中会遇到一些坑，通过坑驱动来学习，可以加深我们对于hooks原理的理解。</p></li> <li><p>3、把Redux和不可变数据结合也是react性能优化的一个重要的手段，我很早就想用Redux结合Facebook开源的一款不可变数据结构库immutable.js来开发，所以通过这个项目来具体地实践一把。</p></li></ul> <h2 id="为什么做这个开源电子书教程？"><a href="#为什么做这个开源电子书教程？" aria-hidden="true" class="header-anchor">#</a> 为什么做这个开源电子书教程？</h2> <ul><li><p>1、 首先在这个项目发出时，我就已经做了一个Promise, 拆解文章一定会出来，这是直接原因。</p></li> <li><p>2、 我相信这个系列出来能够帮助不少的前端开发者，能够通过自己的才华和努力影响一批人，我觉得这本来就是一件非常有成就感的事情。</p></li> <li><p>3、 输出倒逼输入。这个项目不是我一切准备就绪才开始开发的，而是一步步尝试、不断学新的东西，才得以呈现现在的效果。我想写拆解文章复盘，也是这样一个过程，让自己能够不断产生新的想法，然后去尝试，对自己本身也是一种成长。</p></li></ul> <h2 id="项目地址"><a href="#项目地址" aria-hidden="true" class="header-anchor">#</a> 项目地址</h2> <p><a href="https://github.com/sanyuan0704/react-cloud-music" target="_blank" rel="noopener noreferrer">点击进入GitHub仓库<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>
+（欢迎来star、提pr哦！）</p> <p><a href="http://47.105.150.105:8010" target="_blank" rel="noopener noreferrer">点击进入项目上线地址<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>
+项目支持PWA，点击chrome或者safari浏览器的添加至主屏幕，即可在桌面跟App一样以图标形式访问，体验如丝滑般流畅:)</p> <h2 id="作者相关"><a href="#作者相关" aria-hidden="true" class="header-anchor">#</a> 作者相关</h2> <p><a href="https://juejin.im/user/5c45ddf06fb9a04a006f5491/posts" target="_blank" rel="noopener noreferrer">掘金-神三元<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="https://www.zhihu.com/people/yang-xing-yuan-9/activities" target="_blank" rel="noopener noreferrer">知乎-神三元<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><a href="https://github.com/sanyuan0704" target="_blank" rel="noopener noreferrer">GitHub<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>微信公众号: 前端三元同学</p> <p>微信交流群:(群已经满100人，加下面微信拉你进群，验证暗号: react)</p> <img src="/react-cloud-music/weixin.jpg" alt="project" style="margin-top:20px;width:100%;height:100%;"> <h1 id="初始化项目"><a href="#初始化项目" aria-hidden="true" class="header-anchor">#</a> 初始化项目</h1> <div class="tip custom-block"><p class="custom-block-title">温馨提示:</p> <p>本小节代码大家可以去参考GitHub仓库chapter1分支。<a href="https://github.com/sanyuan0704/react-cloud-music/tree/chapter1" target="_blank" rel="noopener noreferrer">传送门<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <h2 id="create-react-app脚手架初始化"><a href="#create-react-app脚手架初始化" aria-hidden="true" class="header-anchor">#</a> create-react-app脚手架初始化</h2> <p>首先通过create-react-app这个脚手架工具生成项目的初始化化结构，在命令行中输入以下命令:</p> <div class="language-bash extra-class"><pre class="language-bash"><code>create-react-app cloud-music
+</code></pre></div><p>完成后，根据提示：</p> <div class="language-js extra-class"><pre class="language-js"><code>cd cloud<span class="token operator">-</span>music
+</code></pre></div><p>启动项目:</p> <div class="language-js extra-class"><pre class="language-js"><code>npm start
+</code></pre></div><h2 id="项目目录说明"><a href="#项目目录说明" aria-hidden="true" class="header-anchor">#</a> 项目目录说明</h2> <p>开始这个项目之前，我们需要对目录进行一下改造。如下(主要针对src目录):</p> <div class="language- extra-class"><pre class="language-text"><code>├─api                   // 网路请求代码、工具类函数和相关配置
+├─application           // 项目核心功能
+├─assets                // 字体配置及全局样式
+├─baseUI                // 基础UI轮子
+├─components            // 可复用的UI组件
+├─routes                // 路由配置文件
+└─store                 // redux相关文件
+  App.js                // 根组件
+  index.js              // 入口文件
+  serviceWorker.js      // PWA离线应用配置
+  style.js              // 默认样式
+</code></pre></div><p>脚手架生成的无用文件已经删除，大家注意也把相关的引入语句也删除。目前应该是整个应用的最终工程目录，以后的开发都会基于这个目录结构进行。</p> <h2 id="默认样式及字体图标准备"><a href="#默认样式及字体图标准备" aria-hidden="true" class="header-anchor">#</a> 默认样式及字体图标准备</h2> <p>本项目的样式采用styled-components来进行开发，也就是利用css in js的方式，我为什么要这么做，有兴趣的同学可以阅读一下我之前在掘金写的文章<a href="https://juejin.im/post/5d1ae68fe51d454f7230255d" target="_blank" rel="noopener noreferrer">styled-components:前端组件拆分新思路<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>。当然后面有人看了我的项目后给我提了这个库的一些缺点，但我依然坚持用它进行开发，因为它在工程化方面的优势依然非常明显，而且大部分缺点我们也可以有意识的去避开，这个具体在后面的章节里面再说吧。</p> <p>其实styled-components的使用是相当简单的，不需要额外专门的学习，所以大家跟着我写一遍，熟悉一下就行了。</p> <p>不知道你有没有发现一个问题，上面目录中默认样式文件是style.js，而不是.css，没错，这就是使用了styled-components后的结果。</p> <p>我们先安装这个库:</p> <div class="language-js extra-class"><pre class="language-js"><code>npm install styled<span class="token operator">-</span>components <span class="token operator">--</span>save
+</code></pre></div><p>在刚刚的style.js中,</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> createGlobalStyle <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'styled-components'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> GlobalStyle <span class="token operator">=</span> createGlobalStyle<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed, 
+	figure, figcaption, footer, header, hgroup, 
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+	/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure, 
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+	body {
+		line-height: 1;
+	}
+	html, body{
+		background: #f2f3f4;;
+	}
+	ol, ul {
+		list-style: none;
+	}
+	blockquote, q {
+		quotes: none;
+	}
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none;
+	}
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	a{
+		text-decoration: none;
+		color: #fff;
+	}
+</span><span class="token template-punctuation string">`</span></span>
+</code></pre></div><p>这就是styled-components创建全局样式并导出的代码。</p> <p>这段代码导出到哪里去呢？导入到App.js中。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//App.js中添加这一句</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> GlobalStyle <span class="token punctuation">}</span> <span class="token keyword">from</span>  <span class="token string">'./style'</span><span class="token punctuation">;</span>
+</code></pre></div><p>我们继续来引入字体图标文件，这里的字体图标是采用的阿里图标库<a href="https://www.iconfont.cn/" target="_blank" rel="noopener noreferrer">地址<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>选择好图标之后下载至本地(本项目下载unicode模式)。这个操作不属于本项目的重点，也过于简单，就不在这浪费篇幅了。</p> <p>在assets目录下新建一个名为iconfont的文件夹, 将.css, .eot, .svg, .ttf, .woff为后缀的文件放到这个文件夹中。
+然后将这个css文件做一些手脚，需要改成js代码。</p> <p>所以现在的iconfont.css需要改成iconfont.js，这里做了一些省略，具体代码大家直接看GitHub仓库chapter1分支吧。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>createGlobalStyle<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'styled-components'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> IconStyle <span class="token operator">=</span> createGlobalStyle<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+@font-face {font-family: &quot;iconfont&quot;;
+  src: url('iconfont.eot?t=1565320061289'); /* IE9 */
+  src: url('iconfont.eot?t=1565320061289#iefix' ...省略base64巨长字符) format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8) format('woff2'),
+  url('iconfont.woff?t=1565320061289') format('woff'),
+  url('iconfont.ttf?t=1565320061289') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1565320061289#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: &quot;iconfont&quot; !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+...
+</span><span class="token template-punctuation string">`</span></span>
+</code></pre></div><p>接下来，咱们把字体引入App.js中。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//App.js</span>
+<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IconStyle <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./assets/iconfont/iconfont'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> GlobalStyle <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./style'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">&quot;App&quot;</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>GlobalStyle<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>GlobalStyle<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>IconStyle<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>IconStyle<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>i className<span class="token operator">=</span><span class="token string">&quot;iconfont&quot;</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span>#xe62b<span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>i<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> App<span class="token punctuation">;</span>
+</code></pre></div><p>接下来大家打开页面可以看到一个小小的放大镜，背景变为浅灰色，字体图标和默认样式起到了效果。</p> <p>到此为止，默认样式和字体图标就算一同引入到了项目中。大家可能会字体图标的用法有了了解，但是中间的unicode编码怎么来的呢？别担心，我专门在iconfont文件夹中放了demo_index.html文件，打开便能索引不同图标的unicode值啦。</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/react-cloud-music/assets/js/app.f939f1d0.js" defer></script><script src="/react-cloud-music/assets/js/2.db64d5ce.js" defer></script><script src="/react-cloud-music/assets/js/8.18307267.js" defer></script>
+  </body>
+</html>
