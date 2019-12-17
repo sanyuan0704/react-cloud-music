@@ -21,7 +21,8 @@ $ cd NeteaseCloudMusicApi
 $ npm install 
 $ cd ../  (注意: 一定要返回到上一层)
 ```
-接下来，要记得把src/api/config.js中把baseUrl改成接口的地址。（一定要记得,不然报404!）
+接下来，要记得把`src/api/config.js`中把`baseUrl`改成接口的地址。（一定要记得,不然报404!）
+
 2. 运行
 ```shell
 $ npm run start
