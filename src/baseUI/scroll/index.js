@@ -204,7 +204,7 @@ Scroll.propTypes = {
   pullUpLoading: PropTypes.bool,
   pullDownLoading: PropTypes.bool,
   bounceTop: PropTypes.bool,//是否支持向上吸顶
-  bounceBottom: PropTypes.bool//是否支持向上吸顶
+  bounceBottom: PropTypes.bool//是否支持向下吸顶
 };
 
 export default Scroll;
