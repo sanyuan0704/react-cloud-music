@@ -81,7 +81,8 @@ function PlayList(props) {
 
   const handleTouchStart = (e) => {
     if(!canTouch || initialed) return;
-    listWrapperRef.current.style["transition"] = "";
+    listWrapperRef.current.style["transition"] = "";\
+    setDistance(0);
     setStartY(e.nativeEvent.touches[0].pageY);
     setInitialed(true);
   };
