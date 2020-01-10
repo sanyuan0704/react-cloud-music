@@ -57,9 +57,12 @@ const SearchBox = (props) => {
   }, [query]);
 
   useEffect(() => {
+    let curQuery = query;
     if(newQuery !== query){
-      setQuery(newQuery);
+      curQuery = newQuery;
+      queryRef.current.value = newQuery;
     }
+    setQuery(curQuery);
     // eslint-disable-next-line
   }, [newQuery]);
 
