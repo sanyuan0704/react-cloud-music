@@ -270,7 +270,7 @@ function Player(props) {
         ></MiniPlayer>
       )}
 
-      <PlayList></PlayList>
+      <PlayList clearPreSong={setPreSong.bind(null, {})}></PlayList>
       <audio
         ref={audioRef}
         onTimeUpdate={updateTime}

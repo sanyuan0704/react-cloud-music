@@ -39,6 +39,9 @@ function PlayList(props) {
     mode,
     sequencePlayList:immutableSequencePlayList
   } = props;
+
+  const { clearPreSong } = props; //清空PreSong
+
   const {
     togglePlayListDispatch,
     changeCurrentIndexDispatch,
@@ -116,6 +119,8 @@ function PlayList(props) {
 
   const handleConfirmClear = () => {
     clearDispatch();
+    // 修复清空播放列表后点击同样的歌曲，播放器不出现的bug
+    clearPreSong();
   }
 
   const getFavoriteIcon = (item) => {
