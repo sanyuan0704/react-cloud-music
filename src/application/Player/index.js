@@ -159,7 +159,7 @@ function Player(props) {
 
   const handleLoop = () => {
     audioRef.current.currentTime = 0;
-    changePlayingState(true);
+    togglePlayingDispatch(true);
     audioRef.current.play();
     if (currentLyric.current) {
       currentLyric.current.seek(0);
