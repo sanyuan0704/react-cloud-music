@@ -114,9 +114,7 @@ const Scroll = forwardRef((props, ref) => {
 
   useEffect(() => {
     if(!bScroll || !onScroll) return;
-    bScroll.on('scroll', (scroll) => {
-      onScroll(scroll);
-    })
+    bScroll.on('scroll', )
     return () => {
       bScroll.off('scroll');
     }
@@ -124,27 +122,29 @@ const Scroll = forwardRef((props, ref) => {
 
   useEffect(() => {
     if(!bScroll || !pullUp) return;
-    bScroll.on('scrollEnd', () => {
+    const handlePullUp = () => {
       //判断是否滑动到了底部
       if(bScroll.y <= bScroll.maxScrollY + 100){
         pullUpDebounce();
       }
-    });
+    };
+    bScroll.on('scrollEnd', handlePullUp);
     return () => {
-      bScroll.off('scrollEnd');
+      bScroll.off('scrollEnd', handlePullUp);
     }
   }, [pullUp, pullUpDebounce, bScroll]);
 
   useEffect(() => {
     if(!bScroll || !pullDown) return;
-    bScroll.on('touchEnd', (pos) => {
+    const handlePullDown = (pos) => {
       //判断用户的下拉动作
       if(pos.y > 50) {
         pullDownDebounce();
       }
-    });
+    };
+    bScroll.on('touchEnd', handlePullDown);
     return () => {
-      bScroll.off('touchEnd');
+      bScroll.off('touchEnd', handlePullDown);
     }
   }, [pullDown, pullDownDebounce, bScroll]);
 
