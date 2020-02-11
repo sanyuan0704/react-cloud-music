@@ -9,7 +9,7 @@ import {
   EnterLoading
 } from "./style";
 import { connect } from 'react-redux';
-import { getSingerList, changeCategory, changeAlpha, getHotSingerList, changeEnterLoading, changeListOffset, refreshMoreSingerList, changePullUpLoading,changePullDownLoading, refreshMoreHotSingerList } from './store/actionCreators';
+import { getSingerList, changeCategory, changeAlpha, getHotSingerList, changeListOffset, refreshMoreSingerList, changePullUpLoading,changePullDownLoading, refreshMoreHotSingerList } from './store/actionCreators';
 import Scroll from "../../baseUI/scroll/index";
 import  LazyLoad, {forceCheck} from 'react-lazyload';
 import Loading from '../../baseUI/loading/index';
@@ -117,14 +117,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateCategory(newVal) {
       dispatch(changeCategory(newVal));
-      dispatch(changeListOffset(0));
-      dispatch(changeEnterLoading(true));
       dispatch(getSingerList());
     },
     updateAlpha(newVal) {
       dispatch(changeAlpha(newVal));
-      dispatch(changeListOffset(0));
-      dispatch(changeEnterLoading(true));
       dispatch(getSingerList());
     },
     // 滑到最底部刷新部分的处理
@@ -149,4 +145,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };   
 
-export default connect(mapStateToProps, mapDispatchToProps)(Singers);
+export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Singers));

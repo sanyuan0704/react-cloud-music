@@ -87,11 +87,11 @@ const Scroll = forwardRef((props, ref) => {
   const { pullUp, pullDown, onScroll } = props;
 
   let pullUpDebounce = useMemo(() => {
-    return debounce(pullUp, 300)
+    return debounce(pullUp, 500)
   }, [pullUp]);
 
   let pullDownDebounce = useMemo(() => {
-    return debounce(pullDown, 300)
+    return debounce(pullDown, 500)
   }, [pullDown]);
 
   useEffect(() => {
@@ -114,9 +114,9 @@ const Scroll = forwardRef((props, ref) => {
 
   useEffect(() => {
     if(!bScroll || !onScroll) return;
-    bScroll.on('scroll', )
+    bScroll.on('scroll', onScroll)
     return () => {
-      bScroll.off('scroll');
+      bScroll.off('scroll', onScroll);
     }
   }, [onScroll, bScroll]);
 

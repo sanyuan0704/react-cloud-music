@@ -14,9 +14,17 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
   switch(action.type) {
     case actionTypes.CHANGE_ALPHA:
-      return state.set('alpha', action.data);
+      return state.merge({
+        'alpha': action.data,
+        listOffset: 0,
+        enterLoading: true
+      });
     case actionTypes.CHANGE_CATOGORY:
-      return state.set('category', action.data);
+      return state.merge({
+        'category': action.data,
+        listOffset: 0,
+        enterLoading: true
+      });;
     case actionTypes.CHANGE_SINGER_LIST:
       return state.set('singerList', action.data);
     case actionTypes.CHANGE_LIST_OFFSET:
