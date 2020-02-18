@@ -6,8 +6,8 @@
  *   time:ms
  * }
  */
-
-const timeExp = /\[(\d{2,}):(\d{2})(?:\.(\d{2,3}))?]/g
+// eslint-disable-next-line
+const timeExp = /\[(\d{2,}):(\d{2})(?:[\.\:](\d{2,3}))?]/g
 
 const STATE_PAUSE = 0
 const STATE_PLAYING = 1

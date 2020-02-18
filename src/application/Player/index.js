@@ -117,7 +117,7 @@ function Player(props) {
     }, 3000);
     getLyricRequest(id)
       .then(data => {
-        lyric = data.lrc.lyric;
+        lyric = data.lrc && data.lrc.lyric;
         if(!lyric) {
           currentLyric.current = null;
           return;
@@ -128,6 +128,7 @@ function Player(props) {
         currentLyric.current.seek(0);
       })
       .catch(() => {
+        currentLyric.current = "";
         songReady.current = true;
         audioRef.current.play();
       });

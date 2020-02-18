@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { CSSTransition } from "react-transition-group";
 import animations from "create-keyframe-animation";
 import ProgressBar from "../../../baseUI/progress-bar/index";
@@ -51,7 +51,7 @@ function NormalPlayer(props) {
 
   const lyricLineRefs = useRef([]);
   const cdWrapperRef = useRef();
-  const currentState = useRef(0);
+  const [currentState, setCurrentState] = useState(0);
 
   useEffect(() => {
     if (!lyricScrollRef.current) return;
@@ -138,15 +138,17 @@ function NormalPlayer(props) {
     cdWrapperDom.style.transition = "";
     cdWrapperDom.style[transform] = "";
     normalPlayerRef.current.style.display = "none";
-    currentState.current = "";
+    setCurrentState("");
   };
 
   const toggleCurrentState = () => {
-    if (currentState.current !== "lyric") {
-      currentState.current = "lyric";
+    let nextState = "";
+    if (currentState !== "lyric") {
+      nextState = "lyric";
     } else {
-      currentState.current = "";
+      nextState = "";
     }
+    setCurrentState(nextState);
   };
 
   const clickPlayingCB = useCallback((e) => {
@@ -187,12 +189,12 @@ function NormalPlayer(props) {
           <CSSTransition
             timeout={400}
             classNames="fade"
-            in={currentState.current !== "lyric"}
+            in={currentState !== "lyric"}
           >
             <CDWrapper
               style={{
                 visibility:
-                  currentState.current !== "lyric" ? "visible" : "hidden"
+                  currentState !== "lyric" ? "visible" : "hidden"
               }}
               playing={playing}
             >
@@ -211,14 +213,14 @@ function NormalPlayer(props) {
           <CSSTransition
             timeout={400}
             classNames="fade"
-            in={currentState.current === "lyric"}
+            in={currentState === "lyric"}
           >
             <LyricContainer>
               <Scroll ref={lyricScrollRef}>
                 <LyricWrapper
                   style={{
                     visibility:
-                      currentState.current === "lyric" ? "visible" : "hidden"
+                      currentState === "lyric" ? "visible" : "hidden"
                   }}
                   className="lyric_wrapper"
                 >
