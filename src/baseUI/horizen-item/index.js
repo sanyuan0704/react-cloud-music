@@ -53,7 +53,7 @@ function Horizen(props) {
   const clickHandle = (item) => {
     handleClick(item.key);
   }
-  return ( 
+  return (
     <Scroll direction={"horizental"} refresh={true}>
       <div ref={Category} >
         <List>
@@ -61,11 +61,11 @@ function Horizen(props) {
           {
             list.map((item) => {
               return (
-                <ListItem 
+                <ListItem
                   key={item.key}
-                  className={`${oldVal === item.key ? 'selected': ''}`} 
+                  className={oldVal === item.key ? 'selected' : ''}
                   onClick={() => clickHandle(item)}>
-                    {item.name}
+                  {item.name}
                 </ListItem>
               )
             })
@@ -85,5 +85,5 @@ Horizen.propTypes = {
   list: PropTypes.array,
   handleClick: PropTypes.func
 };
- 
+
 export default memo(Horizen);
