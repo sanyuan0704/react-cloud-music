@@ -5,6 +5,13 @@
 /.pnp
 .pnp.js
 
+# old files
+./src
+./scripts
+./config
+./server.js
+./public
+
 # testing
 /coverage
 
