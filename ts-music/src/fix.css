@@ -1,0 +1,15 @@
+@media only screen and (-webkit-min-device-pixel-ratio: 2.0) {
+  .border-bottom::after {
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+  }
+}
+
+/* 3倍屏 */
+@media only screen and (-webkit-min-device-pixel-ratio: 3.0) {
+  .border-bottom::after {
+      -webkit-transform: scaleY(0.33);
+      transform: scaleY(0.33);
+      color: rgb(151, 127, 127);
+  }
+}
