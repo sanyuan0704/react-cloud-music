@@ -1,6 +1,5 @@
 # react hooks+redux+immutable.js仿网易云音乐打造精美webApp
 
-[在线体验地址](http://47.98.159.95:8010)
 
 系列拆解文章已经出炉，整理成了掘金小册，请点[这里](https://juejin.im/book/5da96626e51d4524ba0fd237)查看。如遇到问题，或者需要联系加群，请加微信: `FESanyuan`。
 
