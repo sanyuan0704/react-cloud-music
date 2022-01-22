@@ -11,7 +11,7 @@
 ./config
 ./server.js
 ./public
-
+/dist
 # testing
 /coverage
 

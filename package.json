@@ -21,13 +21,15 @@
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.4.1",
-    "swiper": "^4.5.1"
+    "swiper": "^4.5.1",
+    "vite": "^2.7.13"
   },
   "scripts": {
     "start:server": "cd NeteaseCloudMusicApi && cross-env PORT=3300 node app.js",
-    "start:react": "ewas",
+    "start:react": "vite",
     "start": "concurrently \"npm run start:server\" \"npm run start:react\"",
-    "build": "node scripts/build.js",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "node scripts/test.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -49,7 +51,13 @@
   },
   "devDependencies": {
     "@ewas/cli": "^0.0.19",
+    "@vitejs/plugin-react": "^1.1.4",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "chalk": "^5.0.0",
+    "concurrently": "^4.1.1",
     "esbuild-darwin-arm64": "0.13.15",
-    "concurrently": "^4.1.1"
+    "glob": "^7.2.0",
+    "vite-plugin-react-js-support": "^1.0.7",
+    "vite-plugin-require": "^0.0.8"
   }
 }

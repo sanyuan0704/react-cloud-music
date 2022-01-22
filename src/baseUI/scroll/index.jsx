@@ -168,7 +168,6 @@ const Scroll = forwardRef((props, ref) => {
       }
     }
   }));
-
   const PullUpdisplayStyle = pullUpLoading ? { display: "" } : { display: "none" };
   const PullDowndisplayStyle = pullDownLoading ? { display: "" } : { display: "none" };
   return (

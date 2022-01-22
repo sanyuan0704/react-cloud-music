@@ -4,7 +4,7 @@ import { GlobalStyle } from "./style";
 import { renderRoutes } from "react-router-config";
 import { IconStyle } from "./assets/iconfont/iconfont";
 import store from "./store/index";
-import routes from "./routes/index.js";
+import routes from "./routes";
 import { HashRouter } from "react-router-dom";
 import "./fix.css";
 

@@ -5,18 +5,18 @@ import BlankLayout from "../layouts/BlankLayout";
 
 const SuspenseComponent = Component => props => {
   return (
-    <Suspense fallback={null}>
+   <Suspense fallback={null}>
       <Component {...props}></Component>
     </Suspense>
   )
 }
 
-const RecommendComponent = lazy(() => import("../application/Recommend/"));
-const SingersComponent = lazy(() => import("../application/Singers/"));
-const RankComponent = lazy(() => import("../application/Rank/"));
-const AlbumComponent = lazy(() => import("../application/Album/"));
-const SingerComponent = lazy(() => import("./../application/Singer/"));
-const SearchComponent = lazy(() => import("./../application/Search/"));
+const RecommendComponent = lazy(() => import("../application/Recommend"));
+const SingersComponent = lazy(() => import("../application/Singers"));
+const RankComponent = lazy(() => import("../application/Rank"));
+const AlbumComponent = lazy(() => import("../application/Album"));
+const SingerComponent = lazy(() => import("../application/Singer"));
+const SearchComponent = lazy(() => import("../application/Search"));
 
 export default [
   {
