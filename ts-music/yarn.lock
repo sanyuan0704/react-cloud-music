@@ -1091,6 +1091,109 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@better-scroll/core@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/core/-/core-2.4.2.tgz#e69470012d79923a18034c3e4931720fbb06eae5"
+  integrity sha512-IqVZLnh04YpaEAy9wJDxtFK/stxVQjB9A9Wcr3Uwkj7Av1TtFpin+t/TObl53diNDG5ZJ+vck/OAthphpuugLA==
+  dependencies:
+    "@better-scroll/shared-utils" "^2.4.2"
+
+"@better-scroll/indicators@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/indicators/-/indicators-2.4.2.tgz#9c72647a764e540f3ff356937c54d82c771c78aa"
+  integrity sha512-dScI0HIt06L1thLO+1W7w1enqRtegWF1izKYhswiyTXLgagLh2QbAi+oexNiPSOGBuNz8w1mO7hZvVJez/ZFkw==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/infinity@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/infinity/-/infinity-2.4.2.tgz#82c3e61555feaf1d3882cfa35eeb1cce09f91e1b"
+  integrity sha512-KGpCWLTyMzcGBT59c3N/JaVauLmi0jG2YZApdnqON+Oz4AJiHnzGkzWc4EJxcxR3Vy+m5Jp91y6xrpsvRmOdIg==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/mouse-wheel@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.4.2.tgz#dea70a60dc2a3795ef6ad569d2dea5b4c7e9af4c"
+  integrity sha512-dLc8vlYkSYN9AQEo4NDPQloPhscCV17TY98JUBcio4I2STDlYYIQqofqm1GQPfByfK9f057DnrcgZ/bPVx7PTA==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/movable@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/movable/-/movable-2.4.2.tgz#f385e65d23cea2031fddc52dd4eb4f52bd5fc4e7"
+  integrity sha512-y4FbKx9FTUfAfM6wW+PCKA3CONc4nfjaE4N1ImGsIorzkSWV2eGO+LTD6FVv5+gVINI/o9Xj/gHmEJUaupUeSg==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/nested-scroll@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/nested-scroll/-/nested-scroll-2.4.2.tgz#44680f4b02176461250e6be6d95f2ac6169a1c98"
+  integrity sha512-JnC2sqtDqVkj9F5J39u52b6qDsMqXbnURG67dHf97tYoYP2dluwjkvhhxjSFrghREoQzT/KWcDbkfcGy47lQwQ==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/observe-dom@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/observe-dom/-/observe-dom-2.4.2.tgz#cc1e6d82a8f53525c282c9a4bcea5d1be8c21c95"
+  integrity sha512-eeS77CZs+V72dkya10e5ptndBAbhQVcXoYGvfoIihOJgCPqO5MdYTpzRmlbshYCEE5juUMLe82Kx8FSbOejpAw==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/observe-image@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/observe-image/-/observe-image-2.4.2.tgz#b6e55d231d0bb2571dbb18778da92cfbdde2dd54"
+  integrity sha512-ToYVf5vn0cio5B9uaL5NyvFX3JNU6L0Po20Lw7uxa0+FE+kMvSAMJN+9POg6G+cfIqI8GVHhyyR+4Ev8v2Nl5Q==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/pull-down@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/pull-down/-/pull-down-2.4.2.tgz#6b98b28bd73e9b694b0857a9c73879e70339cb96"
+  integrity sha512-bqMLk33o4oesTXIIOteBKHQgfVKjIVvity39TM/MfzkbY1WDBxD+HFS7ySgoqw7Kl2Wiv/U76Wfqzmm6yDdg7Q==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/pull-up@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/pull-up/-/pull-up-2.4.2.tgz#25357ceef7bac7520930f0631896b63a10f82a6f"
+  integrity sha512-07Cke3oa96lN9/inxJZ0ixh0nBbbqxOi2IKcBGtD6dP+susiMcdhgd/c7zNRjXkwlw0vzTNfXTgExIOEWzLHYg==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/scroll-bar@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/scroll-bar/-/scroll-bar-2.4.2.tgz#257856a1da27d65eb899ac26f01060afbf800bdb"
+  integrity sha512-zZd0+sWfzTCXJeuA001o5bea7AvLYz7BCE7dolxFbPTIPnV5V5UEH8LLdXQ/HIwgxI0Pj9PoY9njSuhooh6lfg==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/shared-utils@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/shared-utils/-/shared-utils-2.4.2.tgz#1ac5c97495727093a22a8009560795dd5e3c18da"
+  integrity sha512-Gy/Jfbpu+hq0u+PcjkTqyXGqAf+0dexTzEZ5IDXEVwJVLmd3cx8A73oTcAZ8QZgk4wSHvlMjXecSaptkhnNPEw==
+
+"@better-scroll/slide@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/slide/-/slide-2.4.2.tgz#024528ae57516a2ee99bea346381589e4e6a039c"
+  integrity sha512-VfdFHm/meo4nEyfx0JLn8rUHfQdQCnoBHs/BsV+vmjVivKg+cVgfS+QaytrIulWKqNAWNlfXbAaNtZMv8gNKZg==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/wheel@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/wheel/-/wheel-2.4.2.tgz#0dd74b03599e01a82d55d29f6dcad7a8a503bd75"
+  integrity sha512-oJw68glWbrYBbRK8RJnKo3Fw9bU7Cd4zDbBHbKZ062/YJAJUZW9wF/3Lout4PnolkjuJIp2TZiEgJNtuRd+Njg==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
+"@better-scroll/zoom@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@better-scroll/zoom/-/zoom-2.4.2.tgz#c26c2df3312ed75b31f0203c5f2e6181abc06c5e"
+  integrity sha512-rN/BTE3lf2sNNvKowGL/tUKZ/BgdZcZa0pjE/rVW0tBL/7x68cBowWQD5HF2Z2Bge8OPXRjkwN/xN1aFYhEtWA==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -1500,6 +1603,13 @@
   resolved "https://bnpm.byted.org/@types/aria-query/download/@types/aria-query-4.2.0.tgz#14264692a9d6e2fa4db3df5e56e94b5e25647ac0"
   integrity sha1-FCZGkqnW4vpNs99eVulLXiVkesA=
 
+"@types/axios@^0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@types/axios/-/axios-0.14.0.tgz#ec2300fbe7d7dddd7eb9d3abf87999964cafce46"
+  integrity sha512-KqQnQbdYE54D7oa/UmYVMZKq7CO4l8DEENzOKc4aBRwxCXSlJXGz83flFx5L7AWrOQnmuN3kVsRdt+GZPPjiVQ==
+  dependencies:
+    axios "*"
+
 "@types/babel__core@^7.1.0":
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.6.tgz#16ff42a5ae203c9af1c6e190ed1f30f83207b610"
@@ -1532,6 +1642,11 @@
   integrity sha512-jEFQ8L1tuvPjOI8lnpaf73oCJe+aoxL6ygqSy6c8LcW98zaC+4mzWuQIRCEvKeCOu+lbqdXcg4Uqmm1S8AP1tw==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/better-scroll@^1.12.2":
+  version "1.12.4"
+  resolved "https://registry.yarnpkg.com/@types/better-scroll/-/better-scroll-1.12.4.tgz#e5653cc3025a39c8bd29cfd0828273fca1dedca2"
+  integrity sha512-mSp1CULFPnfotPUuJC9RXG6PaVhqJt0bMbo9wXyUypteSM6o0O9pHZCqY4HQX2KqUXqwtxIvUja1q+rWf3CR7g==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -1608,6 +1723,11 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.4.tgz#38fd73ddfd9b55abb1e1b2ed578cb55bd7b7d339"
   integrity sha512-8+KAKzEvSUdeo+kmqnKrqgeE+LcA0tjYWFY7RPProVYwnqDjukzO+3b6dLD56rYX5TdWejnEOLJYOIeh4CXKuA==
 
+"@types/lodash@^4.14.158":
+  version "4.14.182"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.182.tgz#05301a4d5e62963227eaafe0ce04dd77c54ea5c2"
+  integrity sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -1642,6 +1762,13 @@
   version "16.9.8"
   resolved "https://bnpm.byted.org/@types/react-dom/download/@types/react-dom-16.9.8.tgz#fe4c1e11dfc67155733dfa6aa65108b4971cb423"
   integrity sha1-/kweEd/GcVVzPfpqplEItJcctCM=
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-lazyload@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@types/react-lazyload/-/react-lazyload-2.6.0.tgz#41cd9cbb2c03dd810377518d4837794469a521d1"
+  integrity sha512-VAv6i5RA3O82Q8yuugTXsmGecFOf5GILeILeUdLUs+8PQW1Zg+bety3BfT6gXHdl/wb3PZujlM9rbRd3xab9Vw==
   dependencies:
     "@types/react" "*"
 
@@ -1725,6 +1852,11 @@
     "@types/react" "*"
     "@types/react-native" "*"
     csstype "^2.2.0"
+
+"@types/swiper@^4.4.10":
+  version "4.4.12"
+  resolved "https://registry.yarnpkg.com/@types/swiper/-/swiper-4.4.12.tgz#278a81d3d8f5d8c1ebd2898bfdb00e957bc9a143"
+  integrity sha512-zSuRrHwx2q+13560GMsvIY9KZk3AW30YbVhvNFTof0WZipVk0OCy3HBe8GRq0DMpjjijjrJkwzmgYIrrkgMhxw==
 
 "@types/testing-library__dom@*":
   version "7.5.0"
@@ -2348,6 +2480,14 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
+axios@*:
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
+  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+  dependencies:
+    follow-redirects "^1.14.9"
+    form-data "^4.0.0"
+
 axobject-query@^2.0.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.1.2.tgz#2bdffc0371e643e5f03ba99065d5179b9ca79799"
@@ -2552,6 +2692,26 @@ bcrypt-pbkdf@^1.0.0:
   integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
   dependencies:
     tweetnacl "^0.14.3"
+
+better-scroll@^2.0.0-beta.4:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/better-scroll/-/better-scroll-2.4.2.tgz#7496b14310eed969da4db5ff1fa33ea032d4ef18"
+  integrity sha512-I/JzJNUay2vMAkczBa/4x52QBdUGA3Bs/QtrKrxVjSbBHUMG6yR14srQr4aCAWlIra1FBmuddwGRfI6zRagI9Q==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+    "@better-scroll/indicators" "^2.4.2"
+    "@better-scroll/infinity" "^2.4.2"
+    "@better-scroll/mouse-wheel" "^2.4.2"
+    "@better-scroll/movable" "^2.4.2"
+    "@better-scroll/nested-scroll" "^2.4.2"
+    "@better-scroll/observe-dom" "^2.4.2"
+    "@better-scroll/observe-image" "^2.4.2"
+    "@better-scroll/pull-down" "^2.4.2"
+    "@better-scroll/pull-up" "^2.4.2"
+    "@better-scroll/scroll-bar" "^2.4.2"
+    "@better-scroll/slide" "^2.4.2"
+    "@better-scroll/wheel" "^2.4.2"
+    "@better-scroll/zoom" "^2.4.2"
 
 big.js@^5.2.2:
   version "5.2.2"
@@ -3156,7 +3316,7 @@ color@^3.0.0:
     color-convert "^1.9.1"
     color-string "^1.5.2"
 
-combined-stream@^1.0.6, combined-stream@~1.0.6:
+combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.8.tgz#c3d45a8b34fd730631a110a8a2520682b31d5a7f"
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
@@ -3922,6 +4082,13 @@ dom-serializer@0:
     domelementtype "^2.0.1"
     entities "^2.0.0"
 
+dom7@^2.1.3:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/dom7/-/dom7-2.1.5.tgz#a79411017800b31d8400070cdaebbfc92c1f6377"
+  integrity sha512-xnhwVgyOh3eD++/XGtH+5qBwYTgCm0aW91GFgPJ3XG+jlsRLyJivnbP0QmUBFhI+Oaz9FV0s7cxgXHezwOEBYA==
+  dependencies:
+    ssr-window "^2.0.0"
+
 domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
@@ -4404,9 +4571,9 @@ events@^3.0.0:
   integrity sha512-Rv+u8MLHNOdMjTAFeT3nCjHn2aGlx435FP/sDHNaRhDEMwyI/aB22Kj2qIN8R0cw3z28psEQLYwxVKLsKrMgWg==
 
 eventsource@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/eventsource/-/eventsource-1.0.7.tgz#8fbc72c93fcd34088090bc0a4e64f4b5cee6d8d0"
-  integrity sha512-4Ln17+vVT0k8aWq+t/bF5arcS3EpT9gYtW66EPacdj/mAFevznsnyoHLPy2BA8gbIQeIHoPsvwmfBftfcG//BQ==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/eventsource/-/eventsource-1.1.1.tgz#4544a35a57d7120fba4fa4c86cb4023b2c09df2f"
+  integrity sha512-qV5ZC0h7jYIAOhArFJgSfdyz6rALJyb270714o7ZtNnw2WSJ+eexhKtE0O8LYPRsHZHf2osHKZBxGPvm3kPkCA==
   dependencies:
     original "^1.0.0"
 
@@ -4773,6 +4940,11 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.0.0"
 
+follow-redirects@^1.14.9:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
+  integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
+
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
@@ -4808,6 +4980,15 @@ fork-ts-checker-webpack-plugin@3.1.1:
     semver "^5.6.0"
     tapable "^1.0.0"
     worker-rpc "^0.1.0"
+
+form-data@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
+  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
 
 form-data@~2.3.2:
   version "2.3.3"
@@ -5397,6 +5578,11 @@ immer@1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
+
+immer@^7.0.7:
+  version "7.0.15"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.15.tgz#dc3bc6db87401659d2e737c67a21b227c484a4ad"
+  integrity sha512-yM7jo9+hvYgvdCQdqvhCNRRio0SCXc8xDPzA25SvKWa7b1WVPjLwQs1VYU5JPXjcJPTqAa5NP5dqpORGYBQ2AA==
 
 immutable@^4.0.0-rc.1:
   version "4.0.0-rc.12"
@@ -8749,9 +8935,9 @@ querystring@0.2.0:
   integrity sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
 
 querystringify@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
-  integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.2.0.tgz#3345941b4153cb9d082d8eee4cda2016a9aef7f6"
+  integrity sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==
 
 raf@^3.4.1:
   version "3.4.1"
@@ -8856,6 +9042,11 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-i
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-lazyload@^3.0.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.2.0.tgz#497bd06a6dbd7015e3376e1137a67dc47d2dd021"
+  integrity sha512-zJlrG8QyVZz4+xkYZH5v1w3YaP5wEFaYSUWC4CT9UXfK75IfRAIEdnyIUF+dXr3kX2MOtL1lUaZmaQZqrETwgw==
 
 react-redux@^7.2.1:
   version "7.2.1"
@@ -9833,6 +10024,16 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
+ssr-window@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-1.0.1.tgz#30752a6a4666e7767f0b7e6aa6fc2fdbd0d9b369"
+  integrity sha512-dgFqB+f00LJTEgb6UXhx0h+SrG50LJvti2yMKMqAgzfUmUXZrLSv2fjULF7AWGwK25EXu8+smLR3jYsJQChPsg==
+
+ssr-window@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-2.0.0.tgz#98c301aef99523317f8d69618f0010791096efc4"
+  integrity sha512-NXzN+/HPObKAx191H3zKlYomE5WrVIkoCB5IaSdvKokxTpjBdWfr0RaP+1Z5KOfDT0ZVz+2tdtiBkhsEQ9p+0A==
+
 ssri@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
@@ -10155,6 +10356,14 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+swiper@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-4.5.1.tgz#ed43998e780ceb478610079c8d23fd425eca636f"
+  integrity sha512-se6I7PWWu950NAMXXT+ENtF/6SVb8mPyO+bTfNxbQBILSeLqsYp3Ndap+YOA0EczOIUlea274PKejT6gKZDseA==
+  dependencies:
+    dom7 "^2.1.3"
+    ssr-window "^1.0.1"
 
 symbol-observable@^1.2.0:
   version "1.2.0"
@@ -10540,9 +10749,9 @@ url-loader@2.3.0:
     schema-utils "^2.5.0"
 
 url-parse@^1.4.3:
-  version "1.4.7"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.4.7.tgz#a8a83535e8c00a316e403a5db4ac1b9b853ae278"
-  integrity sha512-d3uaVyzDB9tQoSXFvuSUNFibTd9zxd2bkVrDRvF5TmvWWQwqE4lgYJ5m+x1DbecWkw+LK4RNl2CU1hHuOKPVlg==
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.10.tgz#9d3c2f736c1d75dd3bd2be507dcc111f1e2ea9c1"
+  integrity sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
